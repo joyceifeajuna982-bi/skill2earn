@@ -31,17 +31,25 @@ STORAGE_DIR = Path("/tmp") if IS_VERCEL else BASE_DIR
 
 UPLOAD_DIR = STORAGE_DIR / "uploads"
 DB_FILE = STORAGE_DIR / "posts.json"
-PUBLIC_DIR = BASE_DIR / "public"
 
-# Safely create directories without throwing read-only system errors
+# Check multiple possible public directory locations for local vs Vercel bundling
+POSSIBLE_PUBLIC_DIRS = [
+    BASE_DIR / "public",
+    Path("/var/task/public"),
+    Path("./public")
+]
+
+def get_public_dir():
+    for d in POSSIBLE_PUBLIC_DIRS:
+        if (d / "index.html").exists():
+            return d
+    return BASE_DIR / "public"
+
+PUBLIC_DIR = get_public_dir()
+
+# Safely create upload directory without throwing read-only system errors
 try:
     UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-except Exception:
-    pass
-
-try:
-    if not IS_VERCEL:
-        PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 except Exception:
     pass
 
