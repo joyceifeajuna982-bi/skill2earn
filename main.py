@@ -207,14 +207,33 @@ def add_comment(post_id: str, data: CommentCreate):
 def get_jobs():
     return jobs_db
 
+# Mount upload directory
 if UPLOAD_DIR.exists():
-    app.app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads") if hasattr(app, "app") else app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
+    app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
-# Explicit paths to locate index.html on Vercel or local
+# Determine public directory path dynamically
+POSSIBLE_PUBLIC_DIRS = [
+    BASE_DIR / "public",
+    Path("/var/task/public"),
+    Path("./public"),
+]
+
+def get_public_dir():
+    for d in POSSIBLE_PUBLIC_DIRS:
+        if (d / "index.html").exists():
+            return d
+    return BASE_DIR / "public"
+
+PUBLIC_DIR = get_public_dir()
+
+# Mount public directory as static files so CSS/JS load correctly
+if PUBLIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(PUBLIC_DIR)), name="static")
+
 POSSIBLE_INDEX_PATHS = [
-    BASE_DIR / "public" / "index.html",
+    PUBLIC_DIR / "index.html",
     Path("/var/task/public/index.html"),
-    Path("./public/index.html"),
+    BASE_DIR / "public" / "index.html",
     BASE_DIR / "index.html"
 ]
 
