@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from pydantic import BaseModel
 
 app = FastAPI(
@@ -24,7 +24,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Setup directories safely for Vercel (read-only file system handling)
 IS_VERCEL = os.environ.get("VERCEL", "0") == "1"
 BASE_DIR = Path(__file__).resolve().parent
 STORAGE_DIR = Path("/tmp") if IS_VERCEL else BASE_DIR
@@ -32,22 +31,6 @@ STORAGE_DIR = Path("/tmp") if IS_VERCEL else BASE_DIR
 UPLOAD_DIR = STORAGE_DIR / "uploads"
 DB_FILE = STORAGE_DIR / "posts.json"
 
-# Check multiple possible public directory locations for local vs Vercel bundling
-POSSIBLE_PUBLIC_DIRS = [
-    BASE_DIR / "public",
-    Path("/var/task/public"),
-    Path("./public")
-]
-
-def get_public_dir():
-    for d in POSSIBLE_PUBLIC_DIRS:
-        if (d / "index.html").exists():
-            return d
-    return BASE_DIR / "public"
-
-PUBLIC_DIR = get_public_dir()
-
-# Safely create upload directory without throwing read-only system errors
 try:
     UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 except Exception:
@@ -224,27 +207,32 @@ def add_comment(post_id: str, data: CommentCreate):
 def get_jobs():
     return jobs_db
 
-# Mount static folders safely
 if UPLOAD_DIR.exists():
-    app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
-if PUBLIC_DIR.exists():
-    app.mount("/static", StaticFiles(directory=str(PUBLIC_DIR)), name="static")
+    app.app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads") if hasattr(app, "app") else app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
-@app.get("/")
+# Explicit paths to locate index.html on Vercel or local
+POSSIBLE_INDEX_PATHS = [
+    BASE_DIR / "public" / "index.html",
+    Path("/var/task/public/index.html"),
+    Path("./public/index.html"),
+    BASE_DIR / "index.html"
+]
+
+@app.get("/", response_class=HTMLResponse)
 def serve_index():
-    index_file = PUBLIC_DIR / "index.html"
-    if index_file.exists():
-        return FileResponse(index_file)
-    return {"message": "Skill2Earn API is running."}
+    for path in POSSIBLE_INDEX_PATHS:
+        if path.exists():
+            return FileResponse(path)
+    return HTMLResponse("<h3>Skill2Earn UI: Please check that index.html is inside the public folder.</h3>", status_code=404)
 
 @app.exception_handler(404)
 async def custom_404_handler(request, __):
     if request.url.path.startswith("/api/"):
         return {"detail": "API endpoint not found."}
-    index_file = PUBLIC_DIR / "index.html"
-    if index_file.exists():
-        return FileResponse(index_file)
-    return {"detail": "Not found"}
+    for path in POSSIBLE_INDEX_PATHS:
+        if path.exists():
+            return FileResponse(path)
+    return HTMLResponse("Not found", status_code=404)
 
 if __name__ == "__main__":
     import uvicorn
