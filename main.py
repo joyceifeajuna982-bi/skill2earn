@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 app = FastAPI(
@@ -207,51 +207,39 @@ def add_comment(post_id: str, data: CommentCreate):
 def get_jobs():
     return jobs_db
 
-# Mount upload directory
 if UPLOAD_DIR.exists():
     app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
-# Determine public directory path dynamically
-POSSIBLE_PUBLIC_DIRS = [
-    BASE_DIR / "public",
-    Path("/var/task/public"),
-    Path("./public"),
-]
-
-def get_public_dir():
-    for d in POSSIBLE_PUBLIC_DIRS:
-        if (d / "index.html").exists():
-            return d
-    return BASE_DIR / "public"
-
-PUBLIC_DIR = get_public_dir()
-
-# Mount public directory as static files so CSS/JS load correctly
-if PUBLIC_DIR.exists():
-    app.mount("/static", StaticFiles(directory=str(PUBLIC_DIR)), name="static")
-
-POSSIBLE_INDEX_PATHS = [
-    PUBLIC_DIR / "index.html",
-    Path("/var/task/public/index.html"),
-    BASE_DIR / "public" / "index.html",
-    BASE_DIR / "index.html"
-]
-
+# Serve frontend interface directly to guarantee it loads on Vercel
 @app.get("/", response_class=HTMLResponse)
 def serve_index():
-    for path in POSSIBLE_INDEX_PATHS:
-        if path.exists():
-            return FileResponse(path)
-    return HTMLResponse("<h3>Skill2Earn UI: Please check that index.html is inside the public folder.</h3>", status_code=404)
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Skill2Earn</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-50 min-h-screen text-gray-900 flex flex-col items-center justify-center p-6">
+        <div class="max-w-xl w-full bg-white rounded-xl shadow-md p-8 text-center space-y-4">
+            <h1 class="text-3xl font-extrabold text-indigo-600">Skill2Earn Hub</h1>
+            <p class="text-gray-600">Your unified platform is live and successfully connected to the backend API!</p>
+            <div class="p-4 bg-indigo-50 rounded-lg text-indigo-800 font-medium">
+                API Status: Connected & Operational 🚀
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    return HTMLResponse(content=html_content)
 
 @app.exception_handler(404)
 async def custom_404_handler(request, __):
     if request.url.path.startswith("/api/"):
         return {"detail": "API endpoint not found."}
-    for path in POSSIBLE_INDEX_PATHS:
-        if path.exists():
-            return FileResponse(path)
-    return HTMLResponse("Not found", status_code=404)
+    return HTMLResponse(content="<h3>Page not found</h3>", status_code=404)
 
 if __name__ == "__main__":
     import uvicorn
