@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 from pydantic import BaseModel
 
 app = FastAPI(
@@ -210,30 +210,25 @@ def get_jobs():
 if UPLOAD_DIR.exists():
     app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
-# Serve frontend interface directly to guarantee it loads on Vercel
+# Dynamically read and serve the real index.html file content
 @app.get("/", response_class=HTMLResponse)
 def serve_index():
-    html_content = """
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Skill2Earn</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="bg-gray-50 min-h-screen text-gray-900 flex flex-col items-center justify-center p-6">
-        <div class="max-w-xl w-full bg-white rounded-xl shadow-md p-8 text-center space-y-4">
-            <h1 class="text-3xl font-extrabold text-indigo-600">Skill2Earn Hub</h1>
-            <p class="text-gray-600">Your unified platform is live and successfully connected to the backend API!</p>
-            <div class="p-4 bg-indigo-50 rounded-lg text-indigo-800 font-medium">
-                API Status: Connected & Operational 🚀
-            </div>
-        </div>
-    </body>
-    </html>
-    """
-    return HTMLResponse(content=html_content)
+    possible_paths = [
+        BASE_DIR / "public" / "index.html",
+        Path("/var/task/public/index.html"),
+        Path("./public/index.html"),
+        BASE_DIR / "index.html"
+    ]
+    
+    for path in possible_paths:
+        if path.exists():
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    return HTMLResponse(content=f.read())
+            except Exception:
+                pass
+                
+    return HTMLResponse("<h3>Error: index.html file could not be found or read.</h3>", status_code=404)
 
 @app.exception_handler(404)
 async def custom_404_handler(request, __):
