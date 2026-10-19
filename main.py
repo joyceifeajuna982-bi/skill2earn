@@ -24,7 +24,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Use /tmp for serverless environments like Vercel (read-only file system fix)
+# Setup directories safely for Vercel (read-only file system handling)
 IS_VERCEL = os.environ.get("VERCEL", "0") == "1"
 BASE_DIR = Path(__file__).resolve().parent
 STORAGE_DIR = Path("/tmp") if IS_VERCEL else BASE_DIR
@@ -33,8 +33,17 @@ UPLOAD_DIR = STORAGE_DIR / "uploads"
 DB_FILE = STORAGE_DIR / "posts.json"
 PUBLIC_DIR = BASE_DIR / "public"
 
-UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
+# Safely create directories without throwing read-only system errors
+try:
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+except Exception:
+    pass
+
+try:
+    if not IS_VERCEL:
+        PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
+except Exception:
+    pass
 
 def load_posts_db() -> list:
     if DB_FILE.exists():
