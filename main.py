@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 app = FastAPI(
@@ -210,14 +210,16 @@ def get_jobs():
 if UPLOAD_DIR.exists():
     app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
-# Dynamically read and serve the real index.html file content
+# Dynamically read and serve the real index.html file content from multiple possible locations
 @app.get("/", response_class=HTMLResponse)
 def serve_index():
     possible_paths = [
+        BASE_DIR / "index.html",
         BASE_DIR / "public" / "index.html",
+        Path("/var/task/index.html"),
         Path("/var/task/public/index.html"),
-        Path("./public/index.html"),
-        BASE_DIR / "index.html"
+        Path("./index.html"),
+        Path("./public/index.html")
     ]
     
     for path in possible_paths:
@@ -228,12 +230,30 @@ def serve_index():
             except Exception:
                 pass
                 
-    return HTMLResponse("<h3>Error: index.html file could not be found or read.</h3>", status_code=404)
+    return HTMLResponse(
+        "<h3>Error: index.html could not be found. Please ensure index.html exists in your project repository.</h3>", 
+        status_code=404
+    )
 
 @app.exception_handler(404)
 async def custom_404_handler(request, __):
     if request.url.path.startswith("/api/"):
         return {"detail": "API endpoint not found."}
+    
+    possible_paths = [
+        BASE_DIR / "index.html",
+        BASE_DIR / "public" / "index.html",
+        Path("/var/task/index.html"),
+        Path("/var/task/public/index.html")
+    ]
+    for path in possible_paths:
+        if path.exists():
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    return HTMLResponse(content=f.read())
+            except Exception:
+                pass
+                
     return HTMLResponse(content="<h3>Page not found</h3>", status_code=404)
 
 if __name__ == "__main__":
