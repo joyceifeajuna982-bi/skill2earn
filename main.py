@@ -24,10 +24,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Use /tmp for serverless environments like Vercel (read-only file system fix)
+IS_VERCEL = os.environ.get("VERCEL", "0") == "1"
 BASE_DIR = Path(__file__).resolve().parent
-UPLOAD_DIR = BASE_DIR / "uploads"
+STORAGE_DIR = Path("/tmp") if IS_VERCEL else BASE_DIR
+
+UPLOAD_DIR = STORAGE_DIR / "uploads"
+DB_FILE = STORAGE_DIR / "posts.json"
 PUBLIC_DIR = BASE_DIR / "public"
-DB_FILE = BASE_DIR / "posts.json"
 
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
