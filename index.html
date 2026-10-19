@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Skill2Earn is a community where creators share projects, learn skills, discover opportunities, and connect."
+    >
+
+    <title>Skill2Earn — Create. Connect. Earn.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===================== TOP NAVIGATION ===================== -->
+
+    <header class="topbar">
+        <a href="#home" class="brand">
+            <span class="brand-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </span>
+
+            <span>Skill<span class="brand-highlight">2</span>Earn</span>
+        </a>
+
+        <div class="top-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="search"
+                id="globalSearch"
+                placeholder="Search people, projects and skills..."
+                aria-label="Search Skill2Earn"
+            >
+        </div>
+
+        <nav class="top-actions">
+            <button class="icon-button nav-link active" data-page="home" title="Home">
+                <i class="fa-solid fa-house"></i>
+            </button>
+
+            <button class="icon-button nav-link" data-page="discover" title="Discover">
+                <i class="fa-solid fa-compass"></i>
+            </button>
+
+            <button class="icon-button nav-link" data-page="learn" title="Learning">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </button>
+
+            <button class="icon-button nav-link" data-page="jobs" title="Find work">
+                <i class="fa-solid fa-briefcase"></i>
+            </button>
+
+            <button class="icon-button notification-button" id="notificationButton" title="Notifications">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notification-dot"></span>
+            </button>
+
+            <button class="profile-avatar" id="topAvatar" title="Your profile">
+                S
+            </button>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+
+    <!-- ===================== WELCOME / SIGN IN ===================== -->
+
+    <section class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-content">
+
+            <div class="welcome-logo">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <p class="eyebrow">YOUR SKILLS. YOUR FUTURE.</p>
+
+            <h1>
+                Create something great.<br>
+                <span>Get rewarded for it.</span>
+            </h1>
+
+            <p class="welcome-description">
+                Share your projects, discover talented creators, learn new skills,
+                and find opportunities in one community.
+            </p>
+
+            <form id="signInForm" class="signin-form">
+                <label for="displayName">What should we call you?</label>
+
+                <input
+                    type="text"
+                    id="displayName"
+                    placeholder="Enter your name"
+                    maxlength="40"
+                    required
+                >
+
+                <button class="primary-button full-width" type="submit">
+                    Enter Skill2Earn
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <p class="welcome-note">
+                <i class="fa-solid fa-circle-info"></i>
+                Demo sign-in only. This version does not create a secure account.
+            </p>
+
+        </div>
+
+        <div class="welcome-decoration decoration-one"></div>
+        <div class="welcome-decoration decoration-two"></div>
+    </section>
+
+
+    <!-- ===================== MAIN APPLICATION ===================== -->
+
+    <div class="app-layout hidden" id="appLayout">
+
+        <!-- LEFT SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-user">
+                <div class="large-avatar" id="sidebarAvatar">S</div>
+
+                <div>
+                    <h3 id="sidebarName">Skill2Earn Member</h3>
+                    <p>Community member</p>
+                </div>
+            </div>
+
+            <p class="sidebar-heading">MENU</p>
+
+            <button class="sidebar-link nav-link active" data-page="home">
+                <i class="fa-solid fa-house"></i>
+                <span>Home feed</span>
+            </button>
+
+            <button class="sidebar-link nav-link" data-page="discover">
+                <i class="fa-solid fa-compass"></i>
+                <span>Discover</span>
+            </button>
+
+            <button class="sidebar-link nav-link" data-page="profile">
+                <i class="fa-regular fa-user"></i>
+                <span>My profile</span>
+            </button>
+
+            <button class="sidebar-link nav-link" data-page="jobs">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>Find opportunities</span>
+            </button>
+
+            <button class="sidebar-link nav-link" data-page="learn">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Learning hub</span>
+            </button>
+
+            <div class="sidebar-divider"></div>
+
+            <p class="sidebar-heading">YOUR SPACE</p>
+
+            <button class="sidebar-link" id="savedPostsButton">
+                <i class="fa-regular fa-bookmark"></i>
+                <span>Saved posts</span>
+            </button>
+
+            <button class="sidebar-link" id="myPostsButton">
+                <i class="fa-regular fa-file-lines"></i>
+                <span>My posts</span>
+            </button>
+
+            <div class="sidebar-card">
+                <div class="sidebar-card-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+
+                <h4>Build your future</h4>
+
+                <p>
+                    Share what you're building and connect with people who can help.
+                </p>
+
+                <button class="text-button" data-page="discover">
+                    Explore community
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-footer">
+                <span>Skill2Earn</span>
+                <span>Build • Share • Grow</span>
+            </div>
+
+        </aside>
+
+
+        <!-- ===================== PAGE CONTENT ===================== -->
+
+        <main class="main-content">
+
+            <!-- HOME FEED -->
+
+            <section class="page-section active" id="page-home">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">YOUR COMMUNITY</p>
+                        <h1>Home feed</h1>
+
+                        <p class="muted">
+                            Discover what people are creating today.
+                        </p>
+                    </div>
+
+                    <button class="primary-button" id="scrollToComposer">
+                        <i class="fa-solid fa-plus"></i>
+                        Create post
+                    </button>
+                </div>
+
+
+                <!-- STORIES / QUICK DISCOVERY -->
+
+                <div class="stories-panel">
+                    <div class="stories-heading">
+                        <h3>Explore creators</h3>
+                        <span>Discover new ideas</span>
+                    </div>
+
+                    <div class="stories-list">
+
+                        <button class="story-card story-add" id="storyCreatePost">
+                            <span class="story-circle">
+                                <i class="fa-solid fa-plus"></i>
+                            </span>
+
+                            <span>Your story</span>
+                        </button>
+
+                        <button class="story-card" data-story="Design">
+                            <span class="story-circle story-purple">
+                                <i class="fa-solid fa-pen-nib"></i>
+                            </span>
+
+                            <span>Design</span>
+                        </button>
+
+                        <button class="story-card" data-story="Coding">
+                            <span class="story-circle story-blue">
+                                <i class="fa-solid fa-code"></i>
+                            </span>
+
+                            <span>Coding</span>
+                        </button>
+
+                        <button class="story-card" data-story="Business">
+                            <span class="story-circle story-orange">
+                                <i class="fa-solid fa-lightbulb"></i>
+                            </span>
+
+                            <span>Business</span>
+                        </button>
+
+                        <button class="story-card" data-story="Learning">
+                            <span class="story-circle story-green">
+                                <i class="fa-solid fa-book-open"></i>
+                            </span>
+
+                            <span>Learning</span>
+                        </button>
+
+                        <button class="story-card" data-story="Photography">
+                            <span class="story-circle story-pink">
+                                <i class="fa-solid fa-camera"></i>
+                            </span>
+
+                            <span>Photography</span>
+                        </button>
+
+                    </div>
+                </div>
+
+
+                <!-- POST COMPOSER -->
+
+                <div class="composer-card" id="postComposer">
+
+                    <div class="composer-top">
+                        <div class="composer-avatar" id="composerAvatar">S</div>
+
+                        <button class="composer-input" id="openComposer">
+                            What are you creating today?
+                        </button>
+                    </div>
+
+                    <form id="postForm">
+
+                        <textarea
+                            id="postText"
+                            placeholder="Share an idea, project, achievement or useful tip..."
+                            maxlength="5000"
+                            rows="3"
+                        ></textarea>
+
+                        <div class="upload-preview hidden" id="uploadPreview">
+                            <img id="imagePreview" alt="Selected image preview">
+
+                            <video
+                                id="videoPreview"
+                                controls
+                                class="hidden"
+                            ></video>
+
+                            <button
+                                type="button"
+                                class="remove-upload"
+                                id="removeUpload"
+                                aria-label="Remove selected media"
+                            >
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <div class="composer-bottom">
+
+                            <div class="composer-tools">
+
+                                <label class="composer-tool" for="mediaInput">
+                                    <i class="fa-regular fa-image"></i>
+                                    <span>Photo/video</span>
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="mediaInput"
+                                    accept="image/*,video/mp4,video/webm,video/quicktime"
+                                    hidden
+                                >
+
+                                <button
+                                    type="button"
+                                    class="composer-tool"
+                                    id="addProjectTag"
+                                >
+                                    <i class="fa-solid fa-code"></i>
+                                    <span>Project</span>
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="composer-tool"
+                                    id="addLearningTag"
+                                >
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                    <span>Learning</span>
+                                </button>
+
+                            </div>
+
+                            <button class="primary-button post-submit" type="submit">
+                                Publish
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+
+                        </div>
+
+                        <p class="form-message" id="postMessage"></p>
+
+                    </form>
+
+                </div>
+
+
+                <!-- FEED CONTROLS -->
+
+                <div class="feed-toolbar">
+
+                    <div>
+                        <h2>Latest posts</h2>
+                        <p class="muted">Ideas, projects and inspiration.</p>
+                    </div>
+
+                    <select id="feedSort" aria-label="Sort posts">
+                        <option value="latest">Latest</option>
+                        <option value="popular">Most liked</option>
+                    </select>
+
+                </div>
+
+
+                <!-- REAL POSTS LOAD HERE -->
+
+                <div class="feed-list" id="feedList">
+
+                    <div class="loading-card">
+                        <div class="loading-spinner"></div>
+                        <p>Loading community posts...</p>
+                    </div>
+
+                </div>
+
+                <button class="secondary-button load-more-button hidden" id="loadMorePosts">
+                    Load more posts
+                </button>
+
+            </section>
+
+
+            <!-- DISCOVER PAGE -->
+
+            <section class="page-section" id="page-discover">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">FIND YOUR PEOPLE</p>
+                        <h1>Discover</h1>
+
+                        <p class="muted">
+                            Find projects, ideas and creators worth following.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="discover-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="discoverSearch"
+                        placeholder="Search projects, creators or topics..."
+                    >
+                </div>
+
+                <div class="category-grid">
+
+                    <button class="category-card" data-category="Coding">
+                        <span class="category-icon category-blue">
+                            <i class="fa-solid fa-code"></i>
+                        </span>
+
+                        <h3>Coding</h3>
+                        <p>Apps, websites and software.</p>
+                    </button>
+
+                    <button class="category-card" data-category="Design">
+                        <span class="category-icon category-purple">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </span>
+
+                        <h3>Design</h3>
+                        <p>Graphics, UI and creativity.</p>
+                    </button>
+
+                    <button class="category-card" data-category="Business">
+                        <span class="category-icon category-orange">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </span>
+
+                        <h3>Business</h3>
+                        <p>Ideas, startups and growth.</p>
+                    </button>
+
+                    <button class="category-card" data-category="Education">
+                        <span class="category-icon category-green">
+                            <i class="fa-solid fa-book-open"></i>
+                        </span>
+
+                        <h3>Education</h3>
+                        <p>Learn and share knowledge.</p>
+                    </button>
+
+                    <button class="category-card" data-category="Photography">
+                        <span class="category-icon category-pink">
+                            <i class="fa-solid fa-camera"></i>
+                        </span>
+
+                        <h3>Photography</h3>
+                        <p>Photos, videos and visual art.</p>
+                    </button>
+
+                    <button class="category-card" data-category="Projects">
+                        <span class="category-icon category-yellow">
+                            <i class="fa-solid fa-rocket"></i>
+                        </span>
+
+                        <h3>Projects</h3>
+                        <p>Discover what people are building.</p>
+                    </button>
+
+                </div>
+
+                <div class="feed-toolbar">
+                    <div>
+                        <h2>Explore posts</h2>
+                        <p class="muted" id="discoverResultsText">
+                            Community posts matching your interests.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feed-list" id="discoverFeed"></div>
+
+            </section>
+
+
+            <!-- PROFILE PAGE -->
+
+            <section class="page-section" id="page-profile">
+
+                <div class="profile-cover">
+                    <div class="profile-cover-decoration"></div>
+                </div>
+
+                <div class="profile-information">
+
+                    <div class="profile-main-avatar" id="profileAvatar">S</div>
+
+                    <div class="profile-heading-row">
+                        <div>
+                            <h1 id="profileName">Skill2Earn Member</h1>
+                            <p class="muted">Creator • Community member</p>
+                        </div>
+
+                        <button class="secondary-button" id="editProfileButton">
+                            <i class="fa-solid fa-pen"></i>
+                            Edit profile
+                        </button>
+                    </div>
+
+                    <p id="profileBio">
+                        Building, learning and sharing one step at a time.
+                    </p>
+
+                    <div class="profile-stats">
+                        <div>
+                            <strong id="profilePostCount">0</strong>
+                            <span>Posts</span>
+                        </div>
+
+                        <div>
+                            <strong id="profileLikeCount">0</strong>
+                            <span>Likes received</span>
+                        </div>
+
+                        <div>
+                            <strong id="profileSavedCount">0</strong>
+                            <span>Saved posts</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="feed-toolbar">
+                    <div>
+                        <h2>My posts</h2>
+                        <p class="muted">Things you've shared with the community.</p>
+                    </div>
+                </div>
+
+                <div class="feed-list" id="profileFeed"></div>
+
+            </section>
+
+
+            <!-- JOBS PAGE -->
+
+            <section class="page-section" id="page-jobs">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">YOUR NEXT OPPORTUNITY</p>
+                        <h1>Find work</h1>
+
+                        <p class="muted">
+                            Explore public job listings and remote opportunities.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="jobs-banner">
+                    <div>
+                        <span class="jobs-banner-label">CAREER EXPLORER</span>
+
+                        <h2>Your next opportunity could start here.</h2>
+
+                        <p>
+                            Browse public listings. Always verify the employer
+                            and application details before sharing personal information.
+                        </p>
+                    </div>
+
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+
+                <div class="jobs-controls">
+
+                    <input
+                        type="search"
+                        id="jobSearch"
+                        placeholder="Search job titles or skills..."
+                    >
+
+                    <select id="jobType">
+                        <option value="">All job types</option>
+                        <option value="full_time">Full-time</option>
+                        <option value="part_time">Part-time</option>
+                        <option value="contract">Contract</option>
+                        <option value="internship">Internship</option>
+                    </select>
+
+                    <button class="primary-button" id="searchJobsButton">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search
+                    </button>
+
+                </div>
+
+                <p class="muted" id="jobsStatus">
+                    Connect to the backend to load current public listings.
+                </p>
+
+                <div class="jobs-list" id="jobsList"></div>
+
+            </section>
+
+
+            <!-- LEARNING HUB -->
+
+            <section class="page-section" id="page-learn">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">LEVEL UP YOURSELF</p>
+                        <h1>Learning hub</h1>
+
+                        <p class="muted">
+                            Explore free learning resources to grow your skills.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="learning-hero">
+                    <div>
+                        <span class="learning-label">YOUR LEARNING JOURNEY</span>
+
+                        <h2>Small steps.<br>Big possibilities.</h2>
+
+                        <p>
+                            Choose a skill, practise consistently, and build
+                            projects that demonstrate what you know.
+                        </p>
+
+                        <button class="primary-button" id="learningStartButton">
+                            Explore resources
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                    </div>
+
+                    <div class="learning-illustration">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                </div>
+
+                <div class="feed-toolbar" id="learningResources">
+                    <div>
+                        <h2>Free learning resources</h2>
+                        <p class="muted">
+                            External learning websites. Availability and terms may vary.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="learning-grid">
+
+                    <article class="learning-card">
+                        <div class="learning-card-icon icon-code">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+
+                        <span class="resource-level">PROGRAMMING</span>
+
+                        <h3>Learn web development</h3>
+
+                        <p>
+                            Practise HTML, CSS, JavaScript and web development concepts.
+                        </p>
+
+                        <a href="https://developer.mozilla.org/en-US/docs/Learn"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Start learning
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                    <article class="learning-card">
+                        <div class="learning-card-icon icon-design">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+
+                        <span class="resource-level">DESIGN</span>
+
+                        <h3>Explore design skills</h3>
+
+                        <p>
+                            Learn design principles and improve your visual projects.
+                        </p>
+
+                        <a href="https://www.canva.com/designschool/"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Start learning
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                    <article class="learning-card">
+                        <div class="learning-card-icon icon-business">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <span class="resource-level">BUSINESS</span>
+
+                        <h3>Learn business basics</h3>
+
+                        <p>
+                            Explore entrepreneurship, planning and business skills.
+                        </p>
+
+                        <a href="https://www.sba.gov/business-guide"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Start learning
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                    <article class="learning-card">
+                        <div class="learning-card-icon icon-data">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+
+                        <span class="resource-level">TECHNOLOGY</span>
+
+                        <h3>Explore computer science</h3>
+
+                        <p>
+                            Discover programming, algorithms and computer science.
+                        </p>
+
+                        <a href="https://cs50.harvard.edu/x/"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Start learning
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- ===================== RIGHT SIDEBAR ===================== -->
+
+        <aside class="right-sidebar">
+
+            <div class="right-card">
+
+                <div class="right-card-heading">
+                    <h3>Trending topics</h3>
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+
+                <button class="trending-item" data-topic="Web Development">
+                    <span class="trending-number">01</span>
+
+                    <span>
+                        <strong>Web Development</strong>
+                        <small>Build the internet</small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+
+                <button class="trending-item" data-topic="AI Projects">
+                    <span class="trending-number">02</span>
+
+                    <span>
+                        <strong>AI Projects</strong>
+                        <small>Ideas using AI</small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+
+                <button class="trending-item" data-topic="Graphic Design">
+                    <span class="trending-number">03</span>
+
+                    <span>
+                        <strong>Graphic Design</strong>
+                        <small>Creative inspiration</small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+
+                <button class="trending-item" data-topic="Remote Work">
+                    <span class="trending-number">04</span>
+
+                    <span>
+                        <strong>Remote Work</strong>
+                        <small>Explore opportunities</small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+
+            </div>
+
+
+            <div class="right-card community-card">
+
+                <div class="community-icon">
+                    <i class="fa-solid fa-people-group"></i>
+                </div>
+
+                <h3>Good things happen when we share.</h3>
+
+                <p>
+                    Show your work, celebrate other people, and keep learning.
+                </p>
+
+                <button class="secondary-button full-width" data-page="discover">
+                    Explore community
+                </button>
+
+            </div>
+
+
+            <div class="right-card safety-card">
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+                    <h4>Stay safe online</h4>
+
+                    <p>
+                        Never share your password, banking PIN, or private
+                        financial information in a public post.
+                    </p>
+                </div>
+            </div>
+
+
+            <footer class="right-footer">
+                <span>Skill2Earn © 2026</span>
+
+                <div>
+                    <a href="#" id="aboutLink">About</a>
+                    <a href="#" id="privacyLink">Privacy</a>
+                    <a href="#" id="helpLink">Help</a>
+                </div>
+
+                <p>Create. Connect. Earn.</p>
+            </footer>
+
+        </aside>
+
+    </div>
+
+
+    <!-- ===================== EDIT PROFILE MODAL ===================== -->
+
+    <div class="modal-overlay hidden" id="profileModal">
+
+        <div class="modal-card">
+
+            <div class="modal-heading">
+                <div>
+                    <h2>Edit profile</h2>
+                    <p>Tell the community a little about yourself.</p>
+                </div>
+
+                <button class="modal-close" data-close-modal="profileModal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="profileForm">
+
+                <label for="editName">Display name</label>
+
+                <input
+                    id="editName"
+                    type="text"
+                    maxlength="40"
+                    required
+                >
+
+                <label for="editBio">About you</label>
+
+                <textarea
+                    id="editBio"
+                    maxlength="300"
+                    rows="4"
+                    placeholder="What are you learning or creating?"
+                ></textarea>
+
+                <button class="primary-button full-width" type="submit">
+                    Save changes
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===================== NOTIFICATION MODAL ===================== -->
+
+    <div class="modal-overlay hidden" id="notificationModal">
+
+        <div class="modal-card">
+
+            <div class="modal-heading">
+                <div>
+                    <h2>Notifications</h2>
+                    <p>Your community updates.</p>
+                </div>
+
+                <button class="modal-close" data-close-modal="notificationModal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <i class="fa-regular fa-bell"></i>
+                </div>
+
+                <h3>You're all caught up</h3>
+
+                <p>
+                    Real notifications from other users require accounts
+                    and a notification backend.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===================== MESSAGE TOAST ===================== -->
+
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+
+    <!-- ===================== MOBILE NAVIGATION ===================== -->
+
+    <nav class="mobile-bottom-nav">
+
+        <button class="nav-link active" data-page="home">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </button>
+
+        <button class="nav-link" data-page="discover">
+            <i class="fa-solid fa-compass"></i>
+            <span>Discover</span>
+        </button>
+
+        <button class="mobile-create-button" id="mobileCreatePost" aria-label="Create post">
+            <i class="fa-solid fa-plus"></i>
+        </button>
+
+        <button class="nav-link" data-page="jobs">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Jobs</span>
+        </button>
+
+        <button class="nav-link" data-page="profile">
+            <i class="fa-regular fa-user"></i>
+            <span>Profile</span>
+        </button>
+
+    </nav>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
