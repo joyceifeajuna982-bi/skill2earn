@@ -56,6 +56,10 @@
                 <i class="fa-solid fa-house"></i>
             </button>
 
+            <button class="icon-button nav-link" data-page="community" title="All community posts">
+                <i class="fa-solid fa-users"></i>
+            </button>
+
             <button class="icon-button nav-link" data-page="discover" title="Discover">
                 <i class="fa-solid fa-compass"></i>
             </button>
@@ -156,6 +160,11 @@
             <button class="sidebar-link nav-link active" data-page="home">
                 <i class="fa-solid fa-house"></i>
                 <span>Home feed</span>
+            </button>
+
+            <button class="sidebar-link nav-link" data-page="community">
+                <i class="fa-solid fa-users"></i>
+                <span>All community posts</span>
             </button>
 
             <button class="sidebar-link nav-link" data-page="discover">
@@ -428,6 +437,46 @@
 
             </section>
 
+
+            <!-- ALL COMMUNITY POSTS PAGE -->
+            <section class="page-section" id="page-community">
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">THE SKILL2EARN COMMUNITY</p>
+                        <h1>All community posts</h1>
+                        <p class="muted">See what everyone is sharing — projects, ideas, questions and achievements.</p>
+                    </div>
+                    <button class="secondary-button" id="refreshCommunityPosts">
+                        <i class="fa-solid fa-rotate"></i> Refresh
+                    </button>
+                </div>
+
+                <div class="community-feed-intro">
+                    <div class="community-feed-icon"><i class="fa-solid fa-earth-africa"></i></div>
+                    <div>
+                        <h2>What's happening in the community?</h2>
+                        <p>Posts from other creators appear here when they are published to the Skill2Earn backend.</p>
+                    </div>
+                </div>
+
+                <div class="feed-toolbar">
+                    <div>
+                        <h2>Community feed</h2>
+                        <p class="muted" id="communityPostsStatus">Loading all posts...</p>
+                    </div>
+                    <select id="communityFeedSort" aria-label="Sort community posts">
+                        <option value="latest">Newest first</option>
+                        <option value="popular">Most liked</option>
+                    </select>
+                </div>
+
+                <div class="feed-list" id="communityFeed">
+                    <div class="loading-card">
+                        <div class="loading-spinner"></div>
+                        <p>Loading community posts...</p>
+                    </div>
+                </div>
+            </section>
 
             <!-- DISCOVER PAGE -->
 
@@ -991,6 +1040,11 @@
             <span>Home</span>
         </button>
 
+        <button class="nav-link" data-page="community">
+            <i class="fa-solid fa-users"></i>
+            <span>Community</span>
+        </button>
+
         <button class="nav-link" data-page="discover">
             <i class="fa-solid fa-compass"></i>
             <span>Discover</span>
@@ -1015,7 +1069,7 @@
 
     <!-- JavaScript -->
 
-    <script src="script.js" defer></script>
+    <script src="scrtipt.js" defer></script>
 
 </body>
 </html>

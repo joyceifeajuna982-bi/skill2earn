@@ -3,7 +3,6 @@ import json
 import uuid
 from pathlib import Path
 from datetime import datetime, timezone
-from typing import Optional
 
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -204,16 +203,18 @@ def add_comment(post_id: str, data: CommentCreate):
 def get_jobs():
     return jobs_db
 
-# Mount static folders
-app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
-app.mount("/static", StaticFiles(directory=str(PUBLIC_DIR)), name="static")
+# Mount static folders safely
+if UPLOAD_DIR.exists():
+    app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
+if PUBLIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(PUBLIC_DIR)), name="static")
 
 @app.get("/")
 def serve_index():
     index_file = PUBLIC_DIR / "index.html"
     if index_file.exists():
         return FileResponse(index_file)
-    return {"message": "Skill2Earn API is running. Please place index.html in the public/ folder."}
+    return {"message": "Skill2Earn API is running."}
 
 @app.exception_handler(404)
 async def custom_404_handler(request, __):
@@ -226,4 +227,4 @@ async def custom_404_handler(request, __):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=5501, reload=False)
+    uvicorn.run("main:app", host="0.0.0.0", port=5501, reload=True)
