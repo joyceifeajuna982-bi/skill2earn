@@ -33,7 +33,7 @@
 
     <header class="topbar">
         <a href="#home" class="brand">
-            <span class="brand-icon">
+            <span class="brand-icon avatar-logo" id="headerLogoAvatar">
                 <i class="fa-solid fa-bolt"></i>
             </span>
 
@@ -51,7 +51,7 @@
             >
         </div>
 
-        <nav class="top-actions">
+        <nav class="top-actions" id="topActionsMenu">
             <button class="icon-button nav-link active" data-page="home" title="Home">
                 <i class="fa-solid fa-house"></i>
             </button>
@@ -93,7 +93,7 @@
     <section class="welcome-screen" id="welcomeScreen">
         <div class="welcome-content">
 
-            <div class="welcome-logo">
+            <div class="welcome-logo avatar-logo">
                 <i class="fa-solid fa-bolt"></i>
             </div>
 
@@ -146,7 +146,7 @@
 
         <aside class="sidebar">
 
-            <div class="sidebar-user">
+            <div class="sidebar-user fb-profile-card">
                 <div class="large-avatar" id="sidebarAvatar">S</div>
 
                 <div>
@@ -201,23 +201,6 @@
                 <span>My posts</span>
             </button>
 
-            <div class="sidebar-card">
-                <div class="sidebar-card-icon">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-
-                <h4>Build your future</h4>
-
-                <p>
-                    Share what you're building and connect with people who can help.
-                </p>
-
-                <button class="text-button" data-page="discover">
-                    Explore community
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-
             <div class="sidebar-footer">
                 <span>Skill2Earn</span>
                 <span>Build • Share • Grow</span>
@@ -234,84 +217,14 @@
 
             <section class="page-section active" id="page-home">
 
-                <div class="page-heading">
+                <!-- FACEBOOK STYLE WELCOME HEADER BANNER -->
+                <div class="fb-welcome-banner">
+                    <div class="fb-banner-avatar" id="bannerAvatar">S</div>
                     <div>
-                        <p class="eyebrow">YOUR COMMUNITY</p>
-                        <h1>Home feed</h1>
-
-                        <p class="muted">
-                            Discover what people are creating today.
-                        </p>
-                    </div>
-
-                    <button class="primary-button" id="scrollToComposer">
-                        <i class="fa-solid fa-plus"></i>
-                        Create post
-                    </button>
-                </div>
-
-
-                <!-- STORIES / QUICK DISCOVERY -->
-
-                <div class="stories-panel">
-                    <div class="stories-heading">
-                        <h3>Explore creators</h3>
-                        <span>Discover new ideas</span>
-                    </div>
-
-                    <div class="stories-list">
-
-                        <button class="story-card story-add" id="storyCreatePost">
-                            <span class="story-circle">
-                                <i class="fa-solid fa-plus"></i>
-                            </span>
-
-                            <span>Your story</span>
-                        </button>
-
-                        <button class="story-card" data-story="Design">
-                            <span class="story-circle story-purple">
-                                <i class="fa-solid fa-pen-nib"></i>
-                            </span>
-
-                            <span>Design</span>
-                        </button>
-
-                        <button class="story-card" data-story="Coding">
-                            <span class="story-circle story-blue">
-                                <i class="fa-solid fa-code"></i>
-                            </span>
-
-                            <span>Coding</span>
-                        </button>
-
-                        <button class="story-card" data-story="Business">
-                            <span class="story-circle story-orange">
-                                <i class="fa-solid fa-lightbulb"></i>
-                            </span>
-
-                            <span>Business</span>
-                        </button>
-
-                        <button class="story-card" data-story="Learning">
-                            <span class="story-circle story-green">
-                                <i class="fa-solid fa-book-open"></i>
-                            </span>
-
-                            <span>Learning</span>
-                        </button>
-
-                        <button class="story-card" data-story="Photography">
-                            <span class="story-circle story-pink">
-                                <i class="fa-solid fa-camera"></i>
-                            </span>
-
-                            <span>Photography</span>
-                        </button>
-
+                        <h2>Welcome back, <span id="bannerUserName">Creator</span>! 👋</h2>
+                        <p>Share your latest photos, videos, projects and updates with the community feed.</p>
                     </div>
                 </div>
-
 
                 <!-- POST COMPOSER -->
 
@@ -358,7 +271,7 @@
                             <div class="composer-tools">
 
                                 <label class="composer-tool" for="mediaInput">
-                                    <i class="fa-regular fa-image"></i>
+                                    <i class="fa-regular fa-image" style="color: #16a675;"></i>
                                     <span>Photo/video</span>
                                 </label>
 
@@ -408,8 +321,8 @@
                 <div class="feed-toolbar">
 
                     <div>
-                        <h2>Latest posts</h2>
-                        <p class="muted">Ideas, projects and inspiration.</p>
+                        <h2>News Feed</h2>
+                        <p class="muted">Photos, videos and updates from creators.</p>
                     </div>
 
                     <select id="feedSort" aria-label="Sort posts">
@@ -431,10 +344,6 @@
 
                 </div>
 
-                <button class="secondary-button load-more-button hidden" id="loadMorePosts">
-                    Load more posts
-                </button>
-
             </section>
 
 
@@ -449,14 +358,6 @@
                     <button class="secondary-button" id="refreshCommunityPosts">
                         <i class="fa-solid fa-rotate"></i> Refresh
                     </button>
-                </div>
-
-                <div class="community-feed-intro">
-                    <div class="community-feed-icon"><i class="fa-solid fa-earth-africa"></i></div>
-                    <div>
-                        <h2>What's happening in the community?</h2>
-                        <p>Posts from other creators appear here when they are published to the Skill2Earn backend.</p>
-                    </div>
                 </div>
 
                 <div class="feed-toolbar">
@@ -539,24 +440,6 @@
 
                         <h3>Education</h3>
                         <p>Learn and share knowledge.</p>
-                    </button>
-
-                    <button class="category-card" data-category="Photography">
-                        <span class="category-icon category-pink">
-                            <i class="fa-solid fa-camera"></i>
-                        </span>
-
-                        <h3>Photography</h3>
-                        <p>Photos, videos and visual art.</p>
-                    </button>
-
-                    <button class="category-card" data-category="Projects">
-                        <span class="category-icon category-yellow">
-                            <i class="fa-solid fa-rocket"></i>
-                        </span>
-
-                        <h3>Projects</h3>
-                        <p>Discover what people are building.</p>
                     </button>
 
                 </div>
@@ -721,24 +604,10 @@
                             Choose a skill, practise consistently, and build
                             projects that demonstrate what you know.
                         </p>
-
-                        <button class="primary-button" id="learningStartButton">
-                            Explore resources
-                            <i class="fa-solid fa-arrow-down"></i>
-                        </button>
                     </div>
 
                     <div class="learning-illustration">
                         <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                </div>
-
-                <div class="feed-toolbar" id="learningResources">
-                    <div>
-                        <h2>Free learning resources</h2>
-                        <p class="muted">
-                            External learning websites. Availability and terms may vary.
-                        </p>
                     </div>
                 </div>
 
@@ -786,48 +655,6 @@
                         </a>
                     </article>
 
-                    <article class="learning-card">
-                        <div class="learning-card-icon icon-business">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-
-                        <span class="resource-level">BUSINESS</span>
-
-                        <h3>Learn business basics</h3>
-
-                        <p>
-                            Explore entrepreneurship, planning and business skills.
-                        </p>
-
-                        <a href="https://www.sba.gov/business-guide"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            Start learning
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </article>
-
-                    <article class="learning-card">
-                        <div class="learning-card-icon icon-data">
-                            <i class="fa-solid fa-database"></i>
-                        </div>
-
-                        <span class="resource-level">TECHNOLOGY</span>
-
-                        <h3>Explore computer science</h3>
-
-                        <p>
-                            Discover programming, algorithms and computer science.
-                        </p>
-
-                        <a href="https://cs50.harvard.edu/x/"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            Start learning
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </article>
-
                 </div>
 
             </section>
@@ -868,49 +695,7 @@
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
 
-                <button class="trending-item" data-topic="Graphic Design">
-                    <span class="trending-number">03</span>
-
-                    <span>
-                        <strong>Graphic Design</strong>
-                        <small>Creative inspiration</small>
-                    </span>
-
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </button>
-
-                <button class="trending-item" data-topic="Remote Work">
-                    <span class="trending-number">04</span>
-
-                    <span>
-                        <strong>Remote Work</strong>
-                        <small>Explore opportunities</small>
-                    </span>
-
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </button>
-
             </div>
-
-
-            <div class="right-card community-card">
-
-                <div class="community-icon">
-                    <i class="fa-solid fa-people-group"></i>
-                </div>
-
-                <h3>Good things happen when we share.</h3>
-
-                <p>
-                    Show your work, celebrate other people, and keep learning.
-                </p>
-
-                <button class="secondary-button full-width" data-page="discover">
-                    Explore community
-                </button>
-
-            </div>
-
 
             <div class="right-card safety-card">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -924,19 +709,6 @@
                     </p>
                 </div>
             </div>
-
-
-            <footer class="right-footer">
-                <span>Skill2Earn © 2026</span>
-
-                <div>
-                    <a href="#" id="aboutLink">About</a>
-                    <a href="#" id="privacyLink">Privacy</a>
-                    <a href="#" id="helpLink">Help</a>
-                </div>
-
-                <p>Create. Connect. Earn.</p>
-            </footer>
 
         </aside>
 
@@ -1072,7 +844,6 @@
    SKILL2EARN — COMPLETE WEBSITE STYLES
    ========================================================= */
 
-/* 1. DESIGN SYSTEM */
 :root {
     --primary: #5b5cf0;
     --primary-dark: #4546d8;
@@ -1137,30 +908,6 @@ button {
     cursor: pointer;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-    outline: 3px solid rgba(91, 92, 240, 0.3);
-    outline-offset: 3px;
-}
-
-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-img,
-video {
-    max-width: 100%;
-}
-
 .hidden {
     display: none !important;
 }
@@ -1179,8 +926,15 @@ video {
     text-transform: uppercase;
 }
 
-/* 2. TOP NAVIGATION */
+/* VERCEL STYLE LOGO AVATAR */
+.avatar-logo {
+    background: radial-gradient(circle at 30% 30%, #5b5cf0, #17182b) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(23, 24, 43, 0.25);
+    color: #ffffff;
+}
 
+/* TOP NAVIGATION */
 .topbar {
     align-items: center;
     background: rgba(255, 255, 255, 0.95);
@@ -1210,14 +964,11 @@ video {
 
 .brand-icon {
     align-items: center;
-    background: linear-gradient(135deg, var(--primary), #8c6aff);
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(91, 92, 240, 0.3);
-    color: white;
+    border-radius: 10px;
     display: flex;
-    height: 39px;
+    height: 38px;
     justify-content: center;
-    width: 39px;
+    width: 38px;
 }
 
 .brand-highlight {
@@ -1227,35 +978,22 @@ video {
 .top-search {
     align-items: center;
     background: #f1f2f8;
-    border: 1px solid transparent;
     border-radius: 14px;
     color: var(--muted);
     display: flex;
     gap: 12px;
     max-width: 430px;
     padding: 0 16px;
-    transition: 0.2s;
     width: 35%;
-}
-
-.top-search:focus-within {
-    background: white;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(91, 92, 240, 0.08);
 }
 
 .top-search input {
     background: transparent;
     border: 0;
     color: var(--text);
-    min-width: 0;
     outline: none;
     padding: 12px 0;
     width: 100%;
-}
-
-.top-search input:focus-visible {
-    outline: none;
 }
 
 .top-actions {
@@ -1275,7 +1013,6 @@ video {
     height: 43px;
     justify-content: center;
     position: relative;
-    transition: 0.2s;
     width: 43px;
 }
 
@@ -1300,7 +1037,8 @@ video {
 .large-avatar,
 .composer-avatar,
 .profile-main-avatar,
-.post-avatar {
+.post-avatar,
+.fb-banner-avatar {
     align-items: center;
     background: linear-gradient(135deg, #7778ff, #5b5cf0);
     border: 0;
@@ -1323,10 +1061,10 @@ video {
     color: var(--text);
     display: none;
     font-size: 22px;
+    padding: 5px;
 }
 
-/* 3. BUTTONS */
-
+/* BUTTONS */
 .primary-button,
 .secondary-button {
     align-items: center;
@@ -1337,20 +1075,17 @@ video {
     gap: 9px;
     justify-content: center;
     padding: 12px 17px;
-    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    transition: 0.2s;
 }
 
 .primary-button {
     background: var(--primary);
     border: 1px solid var(--primary);
-    box-shadow: 0 5px 12px rgba(91, 92, 240, 0.13);
     color: white;
 }
 
 .primary-button:hover {
     background: var(--primary-dark);
-    box-shadow: 0 8px 18px rgba(91, 92, 240, 0.22);
-    transform: translateY(-1px);
 }
 
 .secondary-button {
@@ -1359,51 +1094,27 @@ video {
     color: var(--text);
 }
 
-.secondary-button:hover {
-    background: var(--primary-light);
-    border-color: #d7d7ff;
-    color: var(--primary);
-}
-
 .full-width {
     width: 100%;
 }
 
-.text-button {
-    align-items: center;
-    background: none;
-    border: 0;
-    color: var(--primary);
-    display: inline-flex;
-    font-size: 11px;
-    font-weight: 800;
-    gap: 8px;
-}
-
-/* 4. WELCOME SCREEN */
-
+/* WELCOME SCREEN */
 .welcome-screen {
     align-items: center;
-    background:
-        radial-gradient(ellipse at 15% 20%, rgba(109, 92, 255, 0.17), transparent 35%),
-        radial-gradient(ellipse at 85% 80%, rgba(37, 217, 194, 0.12), transparent 35%),
-        #f7f8ff;
+    background: #f7f8ff;
     display: flex;
     justify-content: center;
     min-height: calc(100vh - var(--topbar-height));
-    overflow: hidden;
     padding: 50px 20px;
     position: relative;
 }
 
 .welcome-content {
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 30px;
     box-shadow: var(--shadow-lg);
     max-width: 530px;
     padding: 55px 50px;
-    position: relative;
     text-align: center;
     width: 100%;
     z-index: 2;
@@ -1411,10 +1122,7 @@ video {
 
 .welcome-logo {
     align-items: center;
-    background: linear-gradient(135deg, var(--primary), #9280ff);
     border-radius: 22px;
-    box-shadow: 0 12px 25px rgba(91, 92, 240, 0.3);
-    color: white;
     display: flex;
     font-size: 33px;
     height: 76px;
@@ -1446,48 +1154,27 @@ video {
     text-align: left;
 }
 
-.signin-form label,
-.modal-card form label {
-    color: var(--text);
+.signin-form label {
     display: block;
     font-size: 12px;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
-.signin-form input,
-.modal-card input,
-.modal-card textarea {
+.signin-form input {
     background: white;
     border: 1px solid var(--border);
     border-radius: 11px;
-    color: var(--text);
     margin-bottom: 14px;
     outline: none;
     padding: 14px;
     width: 100%;
 }
 
-.signin-form input:focus,
-.modal-card input:focus,
-.modal-card textarea:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(91, 92, 240, 0.08);
-}
-
-.signin-form button {
-    min-height: 48px;
-}
-
 .welcome-note {
     color: var(--muted);
     font-size: 10px;
     margin-top: 22px;
-}
-
-.welcome-note i {
-    color: var(--primary);
-    margin-right: 5px;
 }
 
 .welcome-decoration {
@@ -1511,8 +1198,7 @@ video {
     width: 400px;
 }
 
-/* 5. APPLICATION LAYOUT */
-
+/* APP LAYOUT */
 .app-layout {
     display: grid;
     gap: 24px;
@@ -1522,17 +1208,7 @@ video {
     padding: 28px 4%;
 }
 
-.sidebar {
-    align-self: start;
-    position: sticky;
-    top: calc(var(--topbar-height) + 25px);
-}
-
-.main-content {
-    min-width: 0;
-}
-
-.right-sidebar {
+.sidebar, .right-sidebar {
     align-self: start;
     position: sticky;
     top: calc(var(--topbar-height) + 25px);
@@ -1540,10 +1216,13 @@ video {
 
 .sidebar-user {
     align-items: center;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
     display: flex;
     gap: 12px;
-    margin-bottom: 30px;
-    padding: 8px 5px;
+    margin-bottom: 25px;
+    padding: 14px;
 }
 
 .large-avatar {
@@ -1582,21 +1261,14 @@ video {
     margin-bottom: 5px;
     padding: 13px 14px;
     text-align: left;
-    transition: 0.2s;
     width: 100%;
 }
 
 .sidebar-link i {
-    font-size: 16px;
-    text-align: center;
     width: 20px;
 }
 
-.sidebar-link:hover {
-    background: white;
-    color: var(--primary);
-}
-
+.sidebar-link:hover,
 .sidebar-link.active {
     background: var(--primary-light);
     color: var(--primary);
@@ -1606,39 +1278,7 @@ video {
 .sidebar-divider {
     background: var(--border);
     height: 1px;
-    margin: 24px 0;
-}
-
-.sidebar-card {
-    background: linear-gradient(145deg, #eeeeff, #e5f8ff);
-    border: 1px solid #e2e5ff;
-    border-radius: 17px;
-    margin-top: 30px;
-    padding: 19px;
-}
-
-.sidebar-card-icon {
-    align-items: center;
-    background: white;
-    border-radius: 10px;
-    color: var(--primary);
-    display: flex;
-    height: 36px;
-    justify-content: center;
-    margin-bottom: 13px;
-    width: 36px;
-}
-
-.sidebar-card h4 {
-    font-size: 13px;
-    margin-bottom: 6px;
-}
-
-.sidebar-card p {
-    color: var(--text-secondary);
-    font-size: 10px;
-    line-height: 1.8;
-    margin-bottom: 15px;
+    margin: 20px 0;
 }
 
 .sidebar-footer {
@@ -1647,37 +1287,22 @@ video {
     flex-direction: column;
     font-size: 10px;
     gap: 4px;
-    margin: 25px 0;
+    margin-top: 25px;
     padding-left: 10px;
 }
 
-/* 6. PAGE SECTIONS */
-
+/* PAGE SECTIONS */
 .page-section {
     display: none;
-    animation: pageAppear 0.25s ease;
 }
 
 .page-section.active {
     display: block;
 }
 
-@keyframes pageAppear {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .page-heading {
     align-items: center;
     display: flex;
-    gap: 15px;
     justify-content: space-between;
     margin-bottom: 24px;
 }
@@ -1685,115 +1310,39 @@ video {
 .page-heading h1 {
     font-size: 27px;
     font-weight: 800;
-    letter-spacing: -1px;
-    line-height: 1.3;
 }
 
-.page-heading .muted {
-    margin-top: 6px;
-}
-
-/* 7. STORIES */
-
-.stories-panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
+/* FACEBOOK STYLE HOME WELCOME BANNER */
+.fb-welcome-banner {
+    align-items: center;
+    background: linear-gradient(135deg, #5b5cf0, #7367f0);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 20px;
-    overflow: hidden;
-    padding: 18px;
-}
-
-.stories-heading {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 18px;
-}
-
-.stories-heading h3 {
-    font-size: 13px;
-    font-weight: 800;
-}
-
-.stories-heading span {
-    color: var(--muted);
-    font-size: 10px;
-}
-
-.stories-list {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 3px;
-}
-
-.story-card {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    color: var(--text-secondary);
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    font-size: 10px;
-    font-weight: 700;
-    gap: 8px;
-}
-
-.story-circle {
-    align-items: center;
-    background: #f1efff;
-    border: 3px solid white;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px #e5e5ff;
-    color: var(--primary);
-    display: flex;
-    font-size: 19px;
-    height: 55px;
-    justify-content: center;
-    transition: transform 0.2s;
-    width: 55px;
-}
-
-.story-card:hover .story-circle {
-    transform: translateY(-3px);
-}
-
-.story-add .story-circle {
-    background: var(--primary);
-    box-shadow: 0 0 0 2px var(--primary-light);
     color: white;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
 }
 
-.story-purple {
-    background: #f1e9ff;
-    color: #9a59dd;
+.fb-banner-avatar {
+    font-size: 22px;
+    height: 60px;
+    width: 60px;
 }
 
-.story-blue {
-    background: #e7f0ff;
-    color: #4285f4;
+.fb-welcome-banner h2 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 4px;
 }
 
-.story-orange {
-    background: #fff0df;
-    color: #ef8a31;
+.fb-welcome-banner p {
+    color: #e8e9ff;
+    font-size: 12px;
 }
 
-.story-green {
-    background: #e1f9ec;
-    color: #1aab71;
-}
-
-.story-pink {
-    background: #ffe8f0;
-    color: #e45091;
-}
-
-/* 8. POST COMPOSER */
-
+/* COMPOSER */
 .composer-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -1823,12 +1372,6 @@ video {
     font-size: 12px;
     padding: 13px 17px;
     text-align: left;
-    transition: 0.2s;
-}
-
-.composer-input:hover {
-    background: white;
-    border-color: var(--border);
 }
 
 #postForm textarea {
@@ -1840,17 +1383,8 @@ video {
     line-height: 1.8;
     margin-top: 12px;
     outline: none;
-    padding: 10px 0;
     resize: vertical;
     width: 100%;
-}
-
-#postForm textarea:focus-visible {
-    outline: none;
-}
-
-#postForm textarea::placeholder {
-    color: #a0a2b3;
 }
 
 .composer-bottom {
@@ -1867,7 +1401,6 @@ video {
 .composer-tools {
     align-items: center;
     display: flex;
-    flex-wrap: wrap;
     gap: 14px;
 }
 
@@ -1882,27 +1415,11 @@ video {
     font-weight: 700;
     gap: 7px;
     padding: 7px;
-    transition: 0.2s;
-}
-
-.composer-tool i {
-    color: var(--primary);
-    font-size: 16px;
 }
 
 .composer-tool:hover {
     background: var(--primary-light);
     color: var(--primary);
-}
-
-.post-submit {
-    padding: 10px 17px;
-}
-
-.form-message {
-    color: var(--text-secondary);
-    font-size: 11px;
-    margin-top: 10px;
 }
 
 .upload-preview {
@@ -1939,12 +1456,10 @@ video {
     width: 32px;
 }
 
-/* 9. FEED TOOLBAR */
-
+/* FEED TOOLBAR */
 .feed-toolbar {
     align-items: center;
     display: flex;
-    gap: 15px;
     justify-content: space-between;
     margin: 28px 0 15px;
 }
@@ -1954,24 +1469,17 @@ video {
     font-weight: 800;
 }
 
-.feed-toolbar .muted {
-    font-size: 11px;
-    margin-top: 4px;
-}
-
 .feed-toolbar select {
     background: white;
     border: 1px solid var(--border);
     border-radius: 9px;
     color: var(--text-secondary);
-    cursor: pointer;
     font-size: 11px;
     outline: none;
     padding: 9px 12px;
 }
 
-/* 10. POST CARDS */
-
+/* POST CARDS */
 .feed-list {
     display: flex;
     flex-direction: column;
@@ -1983,13 +1491,7 @@ video {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
-    min-width: 0;
     overflow: hidden;
-    transition: box-shadow 0.2s;
-}
-
-.post-card:hover {
-    box-shadow: var(--shadow-md);
 }
 
 .post-header {
@@ -2007,36 +1509,16 @@ video {
 
 .post-user-info {
     flex: 1;
-    min-width: 0;
 }
 
 .post-user-info h3 {
     font-size: 12px;
     font-weight: 800;
-    overflow-wrap: anywhere;
 }
 
 .post-user-info p {
     color: var(--muted);
     font-size: 10px;
-    margin-top: 2px;
-}
-
-.post-menu-button {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    border-radius: 9px;
-    color: var(--muted);
-    display: flex;
-    height: 35px;
-    justify-content: center;
-    width: 35px;
-}
-
-.post-menu-button:hover {
-    background: var(--bg);
-    color: var(--text);
 }
 
 .post-category {
@@ -2054,7 +1536,6 @@ video {
     color: #46485e;
     font-size: 12px;
     line-height: 1.9;
-    overflow-wrap: anywhere;
     padding: 0 20px 16px;
     white-space: pre-wrap;
 }
@@ -2084,28 +1565,10 @@ video {
     padding: 13px 20px;
 }
 
-.post-stats-left {
-    align-items: center;
-    display: flex;
-    gap: 6px;
-}
-
-.like-dot {
-    align-items: center;
-    background: var(--primary);
-    border-radius: 50%;
-    color: white;
-    display: inline-flex;
-    font-size: 8px;
-    height: 17px;
-    justify-content: center;
-    width: 17px;
-}
-
 .post-actions {
     border-top: 1px solid var(--border);
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     padding: 5px 12px;
 }
 
@@ -2120,125 +1583,19 @@ video {
     font-weight: 700;
     gap: 8px;
     justify-content: center;
-    min-width: 0;
     padding: 12px 5px;
-    transition: 0.2s;
 }
 
 .post-action:hover {
     background: var(--bg);
 }
 
-.post-action.liked {
+.post-action.liked, .post-action.saved {
     color: var(--primary);
 }
 
-.post-action.liked i {
-    font-weight: 900;
-}
-
-.post-action.saved {
-    color: var(--primary);
-}
-
-.post-comments {
-    border-top: 1px solid var(--border);
-    padding: 15px 20px;
-}
-
-.comments-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 14px;
-}
-
-.comment-item {
-    align-items: flex-start;
-    display: flex;
-    gap: 9px;
-}
-
-.comment-avatar {
-    align-items: center;
-    background: #eeeaff;
-    border-radius: 50%;
-    color: var(--primary);
-    display: flex;
-    flex-shrink: 0;
-    font-size: 10px;
-    font-weight: 800;
-    height: 29px;
-    justify-content: center;
-    width: 29px;
-}
-
-.comment-bubble {
-    background: #f6f7fb;
-    border-radius: 5px 13px 13px 13px;
-    flex: 1;
-    min-width: 0;
-    padding: 9px 12px;
-}
-
-.comment-bubble strong {
-    display: block;
-    font-size: 10px;
-    margin-bottom: 3px;
-}
-
-.comment-bubble p {
-    color: var(--text-secondary);
-    font-size: 11px;
-    overflow-wrap: anywhere;
-    white-space: pre-wrap;
-}
-
-.comment-form {
-    align-items: center;
-    display: flex;
-    gap: 8px;
-}
-
-.comment-form input {
-    background: #f5f6fb;
-    border: 1px solid transparent;
-    border-radius: 22px;
-    color: var(--text);
-    flex: 1;
-    font-size: 11px;
-    min-width: 0;
-    outline: none;
-    padding: 12px 15px;
-}
-
-.comment-form input:focus {
-    background: white;
-    border-color: var(--primary);
-}
-
-.comment-form button {
-    align-items: center;
-    background: var(--primary);
-    border: 0;
-    border-radius: 50%;
-    color: white;
-    display: flex;
-    flex-shrink: 0;
-    height: 36px;
-    justify-content: center;
-    width: 36px;
-}
-
-.load-more-button {
-    margin: 20px auto;
-    width: 100%;
-}
-
-/* 11. LOADING AND EMPTY STATES */
-
-.loading-card,
-.empty-state {
+/* LOADING STATES */
+.loading-card, .empty-state {
     align-items: center;
     background: white;
     border: 1px solid var(--border);
@@ -2248,13 +1605,6 @@ video {
     flex-direction: column;
     padding: 45px 20px;
     text-align: center;
-}
-
-.loading-card p,
-.empty-state p {
-    font-size: 12px;
-    margin-top: 12px;
-    max-width: 350px;
 }
 
 .loading-spinner {
@@ -2267,35 +1617,14 @@ video {
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
-.empty-state-icon {
-    align-items: center;
-    background: var(--primary-light);
-    border-radius: 50%;
-    color: var(--primary);
-    display: flex;
-    font-size: 25px;
-    height: 65px;
-    justify-content: center;
-    width: 65px;
-}
-
-.empty-state h3 {
-    font-size: 15px;
-    margin-top: 17px;
-}
-
-/* 12. RIGHT SIDEBAR */
-
+/* RIGHT SIDEBAR */
 .right-card {
     background: white;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
     margin-bottom: 18px;
     padding: 19px;
 }
@@ -2307,15 +1636,6 @@ video {
     margin-bottom: 15px;
 }
 
-.right-card-heading h3 {
-    font-size: 13px;
-    font-weight: 800;
-}
-
-.right-card-heading i {
-    color: var(--primary);
-}
-
 .trending-item {
     align-items: center;
     background: transparent;
@@ -2325,13 +1645,7 @@ video {
     gap: 10px;
     padding: 12px 3px;
     text-align: left;
-    transition: 0.2s;
     width: 100%;
-}
-
-.trending-item:hover {
-    background: var(--surface-hover);
-    padding-left: 8px;
 }
 
 .trending-number {
@@ -2340,232 +1654,12 @@ video {
     font-weight: 800;
 }
 
-.trending-item>span:nth-child(2) {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    min-width: 0;
-}
-
-.trending-item strong {
-    font-size: 10px;
-    font-weight: 800;
-}
-
-.trending-item small {
-    color: var(--muted);
-    font-size: 9px;
-    margin-top: 2px;
-}
-
-.trending-item>i {
-    color: var(--muted);
-    font-size: 10px;
-}
-
-.community-card {
-    background: linear-gradient(145deg, #efefff, #f1fbff);
-    border-color: #e5e6ff;
-}
-
-.community-icon {
-    align-items: center;
-    background: white;
-    border-radius: 12px;
-    color: var(--primary);
-    display: flex;
-    font-size: 19px;
-    height: 43px;
-    justify-content: center;
-    margin-bottom: 15px;
-    width: 43px;
-}
-
-.community-card h3 {
-    font-size: 15px;
-    line-height: 1.6;
-}
-
-.community-card p {
-    color: var(--text-secondary);
-    font-size: 11px;
-    line-height: 1.8;
-    margin: 9px 0 17px;
-}
-
-.safety-card {
-    align-items: flex-start;
-    background: #f1fbf6;
-    border-color: #d9f0e4;
-    display: flex;
-    gap: 12px;
-}
-
-.safety-card>i {
-    color: var(--green);
-    font-size: 20px;
-}
-
-.safety-card h4 {
-    font-size: 11px;
-    margin-bottom: 5px;
-}
-
-.safety-card p {
-    color: var(--text-secondary);
-    font-size: 10px;
-    line-height: 1.8;
-}
-
-.right-footer {
-    color: var(--muted);
-    font-size: 10px;
-    padding: 10px 5px;
-    text-align: center;
-}
-
-.right-footer>span {
-    display: block;
-    margin-bottom: 8px;
-}
-
-.right-footer div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 13px;
-    justify-content: center;
-}
-
-.right-footer a:hover {
-    color: var(--primary);
-}
-
-.right-footer p {
-    margin-top: 8px;
-}
-
-/* 13. DISCOVER PAGE */
-
-.discover-search {
-    align-items: center;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    color: var(--muted);
-    display: flex;
-    gap: 12px;
-    margin-bottom: 22px;
-    padding: 0 16px;
-}
-
-.discover-search input {
-    background: transparent;
-    border: 0;
-    color: var(--text);
-    min-width: 0;
-    outline: none;
-    padding: 14px 0;
-    width: 100%;
-}
-
-.discover-search input:focus-visible {
-    outline: none;
-}
-
-.category-grid {
-    display: grid;
-    gap: 13px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.category-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 17px 14px;
-    text-align: left;
-    transition: 0.2s;
-}
-
-.category-card:hover {
-    border-color: #cfcfff;
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-}
-
-.category-icon {
-    align-items: center;
-    border-radius: 11px;
-    display: flex;
-    font-size: 19px;
-    height: 43px;
-    justify-content: center;
-    margin-bottom: 13px;
-    width: 43px;
-}
-
-.category-blue {
-    background: #e8f0ff;
-    color: #4a79e9;
-}
-
-.category-purple {
-    background: #f1e8ff;
-    color: #9955d8;
-}
-
-.category-orange {
-    background: #fff0df;
-    color: #e68a30;
-}
-
-.category-green {
-    background: #e3f8eb;
-    color: #18a66b;
-}
-
-.category-pink {
-    background: #ffe8f0;
-    color: #e45091;
-}
-
-.category-yellow {
-    background: #fff6d8;
-    color: #bd9200;
-}
-
-.category-card h3 {
-    font-size: 11px;
-    font-weight: 800;
-}
-
-.category-card p {
-    color: var(--muted);
-    font-size: 9px;
-    line-height: 1.7;
-    margin-top: 5px;
-}
-
-/* 14. PROFILE PAGE */
-
+/* PROFILE PAGE */
 .profile-cover {
-    background:
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.25), transparent 25%),
-        linear-gradient(120deg, #5b5cf0, #9d77ff 60%, #37c9d9);
+    background: linear-gradient(120deg, #5b5cf0, #9d77ff 60%, #37c9d9);
     border-radius: 19px;
     height: 170px;
-    overflow: hidden;
     position: relative;
-}
-
-.profile-cover-decoration {
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 50%;
-    height: 260px;
-    position: absolute;
-    right: -40px;
-    top: -120px;
-    width: 260px;
 }
 
 .profile-information {
@@ -2577,29 +1671,14 @@ video {
     font-size: 29px;
     height: 94px;
     margin-top: -48px;
-    position: relative;
     width: 94px;
 }
 
 .profile-heading-row {
     align-items: center;
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
     justify-content: space-between;
     margin: 10px 0 14px;
-}
-
-.profile-heading-row h1 {
-    font-size: 23px;
-    font-weight: 800;
-    letter-spacing: -0.7px;
-}
-
-.profile-information>p {
-    color: var(--text-secondary);
-    font-size: 12px;
-    max-width: 600px;
 }
 
 .profile-stats {
@@ -2610,328 +1689,11 @@ video {
     padding-bottom: 20px;
 }
 
-.profile-stats>div {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-
 .profile-stats strong {
     font-size: 19px;
 }
 
-.profile-stats span {
-    color: var(--muted);
-    font-size: 10px;
-}
-
-/* 15. JOBS PAGE */
-
-.jobs-banner {
-    align-items: center;
-    background: linear-gradient(120deg, #292a69, #5556d8);
-    border-radius: 20px;
-    color: white;
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    margin-bottom: 23px;
-    overflow: hidden;
-    padding: 30px;
-    position: relative;
-}
-
-.jobs-banner-label {
-    color: #b9c0ff;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-}
-
-.jobs-banner h2 {
-    font-size: 23px;
-    letter-spacing: -0.7px;
-    line-height: 1.4;
-    margin-top: 9px;
-    max-width: 400px;
-}
-
-.jobs-banner p {
-    color: #e1e3ff;
-    font-size: 11px;
-    line-height: 1.8;
-    margin-top: 10px;
-    max-width: 430px;
-}
-
-.jobs-banner>i {
-    color: rgba(255, 255, 255, 0.18);
-    flex-shrink: 0;
-    font-size: 85px;
-}
-
-.jobs-controls {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.jobs-controls input,
-.jobs-controls select {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-size: 11px;
-    min-width: 0;
-    outline: none;
-    padding: 12px;
-}
-
-.jobs-controls input {
-    flex: 1;
-}
-
-.jobs-controls select {
-    max-width: 145px;
-}
-
-.jobs-controls input:focus,
-.jobs-controls select:focus {
-    border-color: var(--primary);
-}
-
-#jobsStatus {
-    margin-bottom: 15px;
-}
-
-.jobs-list {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-}
-
-.job-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 19px;
-    transition: 0.2s;
-}
-
-.job-card:hover {
-    border-color: #d1d1ff;
-    box-shadow: var(--shadow-md);
-}
-
-.job-card-top {
-    align-items: flex-start;
-    display: flex;
-    gap: 12px;
-}
-
-.job-company-icon {
-    align-items: center;
-    background: var(--primary-light);
-    border-radius: 12px;
-    color: var(--primary);
-    display: flex;
-    flex-shrink: 0;
-    font-size: 20px;
-    height: 47px;
-    justify-content: center;
-    width: 47px;
-}
-
-.job-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.job-info h3 {
-    font-size: 13px;
-    font-weight: 800;
-    overflow-wrap: anywhere;
-}
-
-.job-info p {
-    color: var(--text-secondary);
-    font-size: 10px;
-    margin-top: 4px;
-}
-
-.job-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin: 14px 0;
-}
-
-.job-badge {
-    background: #f1f2f8;
-    border-radius: 6px;
-    color: var(--text-secondary);
-    font-size: 9px;
-    padding: 5px 8px;
-}
-
-.job-description {
-    color: var(--text-secondary);
-    font-size: 11px;
-    line-height: 1.8;
-    margin-bottom: 15px;
-    overflow-wrap: anywhere;
-}
-
-.job-card-footer {
-    align-items: center;
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: space-between;
-    padding-top: 14px;
-}
-
-.job-source {
-    color: var(--muted);
-    font-size: 9px;
-}
-
-/* 16. LEARNING PAGE */
-
-.learning-hero {
-    align-items: center;
-    background: linear-gradient(125deg, #1d2250, #4849ba);
-    border-radius: 20px;
-    color: white;
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    margin-bottom: 27px;
-    overflow: hidden;
-    padding: 33px;
-    position: relative;
-}
-
-.learning-label {
-    color: #c6c7ff;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-}
-
-.learning-hero h2 {
-    font-size: 30px;
-    letter-spacing: -1px;
-    line-height: 1.3;
-    margin: 12px 0;
-}
-
-.learning-hero p {
-    color: #e1e2ff;
-    font-size: 11px;
-    line-height: 1.9;
-    margin-bottom: 20px;
-    max-width: 380px;
-}
-
-.learning-illustration {
-    align-items: center;
-    color: rgba(255, 255, 255, 0.16);
-    display: flex;
-    flex-shrink: 0;
-    font-size: 100px;
-    justify-content: center;
-}
-
-.learning-grid {
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.learning-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 20px;
-    transition: 0.2s;
-}
-
-.learning-card:hover {
-    border-color: #d3d3ff;
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-.learning-card-icon {
-    align-items: center;
-    border-radius: 12px;
-    display: flex;
-    font-size: 20px;
-    height: 45px;
-    justify-content: center;
-    margin-bottom: 16px;
-    width: 45px;
-}
-
-.icon-code {
-    background: #e9efff;
-    color: #4977e9;
-}
-
-.icon-design {
-    background: #f2e9ff;
-    color: #9955d8;
-}
-
-.icon-business {
-    background: #fff1df;
-    color: #e58b31;
-}
-
-.icon-data {
-    background: #e2f8eb;
-    color: #18a66b;
-}
-
-.resource-level {
-    color: var(--primary);
-    font-size: 8px;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-}
-
-.learning-card h3 {
-    font-size: 13px;
-    margin: 8px 0;
-}
-
-.learning-card p {
-    color: var(--text-secondary);
-    font-size: 10px;
-    line-height: 1.9;
-    margin-bottom: 17px;
-}
-
-.learning-card a {
-    align-items: center;
-    color: var(--primary);
-    display: inline-flex;
-    font-size: 10px;
-    font-weight: 800;
-    gap: 7px;
-}
-
-.learning-card a:hover {
-    color: var(--primary-dark);
-}
-
-/* 17. MODALS */
-
+/* MODALS */
 .modal-overlay {
     align-items: center;
     background: rgba(17, 18, 43, 0.55);
@@ -2945,72 +1707,14 @@ video {
 }
 
 .modal-card {
-    animation: modalAppear 0.2s ease;
     background: white;
     border-radius: 20px;
-    box-shadow: var(--shadow-lg);
-    max-height: 90vh;
     max-width: 470px;
-    overflow-y: auto;
     padding: 25px;
     width: 100%;
 }
 
-@keyframes modalAppear {
-    from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.modal-heading {
-    align-items: flex-start;
-    display: flex;
-    gap: 15px;
-    justify-content: space-between;
-    margin-bottom: 23px;
-}
-
-.modal-heading h2 {
-    font-size: 20px;
-    font-weight: 800;
-}
-
-.modal-heading p {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 5px;
-}
-
-.modal-close {
-    align-items: center;
-    background: var(--bg);
-    border: 0;
-    border-radius: 50%;
-    color: var(--text-secondary);
-    display: flex;
-    flex-shrink: 0;
-    height: 34px;
-    justify-content: center;
-    width: 34px;
-}
-
-.modal-close:hover {
-    background: var(--primary-light);
-    color: var(--primary);
-}
-
-.modal-card form button {
-    margin-top: 10px;
-}
-
-/* 18. TOASTS */
-
+/* TOASTS */
 .toast-container {
     bottom: 25px;
     display: flex;
@@ -3022,135 +1726,57 @@ video {
     z-index: 1000;
 }
 
-.toast {
-    align-items: center;
-    animation: toastAppear 0.2s ease;
+.toast-message {
     background: #22233e;
     border-radius: 12px;
     box-shadow: var(--shadow-lg);
     color: white;
-    display: flex;
     font-size: 12px;
-    gap: 10px;
-    max-width: min(360px, calc(100vw - 35px));
     padding: 14px 18px;
 }
 
-.toast i {
-    color: #70e3ba;
-}
-
-.toast.error i {
-    color: #ff8194;
-}
-
-@keyframes toastAppear {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* 19. MOBILE NAVIGATION */
-
-.mobile-bottom-nav {
-    display: none;
-}
-
-/* 20. RESPONSIVE TABLET */
-
-@media (max-width: 1250px) {
-    .app-layout {
-        gap: 18px;
-        grid-template-columns: 205px minmax(0, 1fr);
-        padding-left: 3%;
-        padding-right: 3%;
-    }
-
-    .right-sidebar {
-        display: none;
-    }
-
-    .topbar {
-        padding-left: 3%;
-        padding-right: 3%;
-    }
-
-    .top-search {
-        max-width: 350px;
-    }
-}
-
+/* MOBILE RESPONSIVE STYLES */
 @media (max-width: 850px) {
-    :root {
-        --topbar-height: 66px;
-    }
-
     .app-layout {
         display: block;
-        margin: 0 auto;
-        max-width: 700px;
-        padding: 22px 18px 35px;
+        padding: 22px 18px 85px;
     }
 
-    .sidebar {
+    .sidebar, .right-sidebar {
         display: none;
     }
 
     .topbar {
-        gap: 15px;
         padding: 0 18px;
     }
 
-    .brand {
-        font-size: 18px;
-    }
-
-    .brand-icon {
-        height: 35px;
-        width: 35px;
-    }
-
-    .top-search {
-        flex: 1;
-        max-width: 320px;
-        width: auto;
-    }
-
-    .top-search input {
-        font-size: 11px;
-    }
-
     .top-actions {
-        gap: 4px;
-    }
-
-    .top-actions .icon-button {
-        height: 38px;
-        width: 38px;
-    }
-
-    .top-actions .nav-link {
+        position: fixed;
+        top: var(--topbar-height);
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-md);
         display: none;
     }
 
-    .profile-avatar {
-        height: 36px;
-        width: 36px;
+    .top-actions.mobile-menu-open {
+        display: flex;
+    }
+
+    .top-actions .icon-button {
+        justify-content: flex-start;
+        width: 100%;
+        padding: 10px 15px;
+        height: auto;
     }
 
     .menu-toggle {
         display: flex;
-        padding: 8px;
-    }
-
-    .right-sidebar {
-        display: none;
     }
 
     .mobile-bottom-nav {
@@ -3162,7 +1788,7 @@ video {
         height: 68px;
         justify-content: space-around;
         left: 0;
-        padding: 5px 8px calc(5px + env(safe-area-inset-bottom));
+        padding: 5px 8px;
         position: fixed;
         right: 0;
         z-index: 150;
@@ -3178,11 +1804,6 @@ video {
         font-size: 9px;
         gap: 4px;
         justify-content: center;
-        min-width: 48px;
-    }
-
-    .mobile-bottom-nav>button i {
-        font-size: 18px;
     }
 
     .mobile-bottom-nav>button.active {
@@ -3193,361 +1814,20 @@ video {
     .mobile-bottom-nav .mobile-create-button {
         background: var(--primary);
         border-radius: 16px;
-        box-shadow: 0 5px 13px rgba(91, 92, 240, 0.3);
         color: white;
         height: 45px;
-        min-width: 48px;
-        transform: translateY(-7px);
         width: 48px;
     }
-
-    .mobile-create-button i {
-        font-size: 22px !important;
-    }
-
-    body {
-        padding-bottom: 68px;
-    }
-
-    .toast-container {
-        bottom: 85px;
-        right: 15px;
-    }
 }
 
-/* 21. RESPONSIVE MOBILE */
-
-@media (max-width: 560px) {
-    .topbar {
-        gap: 10px;
-        padding: 0 12px;
-    }
-
-    .brand {
-        font-size: 16px;
-        gap: 6px;
-    }
-
-    .brand-icon {
-        border-radius: 10px;
-        font-size: 14px;
-        height: 32px;
-        width: 32px;
-    }
-
-    .top-search {
-        gap: 8px;
-        padding: 0 10px;
-    }
-
-    .top-search i {
-        font-size: 12px;
-    }
-
-    .top-search input {
-        font-size: 10px;
-        padding: 10px 0;
-    }
-
-    .top-actions {
-        gap: 2px;
-    }
-
-    .top-actions .notification-button {
-        display: none;
-    }
-
-    .profile-avatar {
-        height: 31px;
-        width: 31px;
-    }
-
-    .menu-toggle {
-        font-size: 18px;
-        padding: 5px;
-    }
-
-    .app-layout {
-        padding: 18px 12px 28px;
-    }
-
-    .page-heading {
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .page-heading h1 {
-        font-size: 23px;
-    }
-
-    .page-heading .primary-button {
-        font-size: 10px;
-        padding: 10px;
-        white-space: nowrap;
-    }
-
-    .page-heading .muted {
-        font-size: 11px;
-    }
-
-    .stories-panel {
-        padding: 15px 13px;
-    }
-
-    .stories-list {
-        gap: 16px;
-    }
-
-    .story-circle {
-        height: 48px;
-        width: 48px;
-    }
-
-    .composer-card {
-        padding: 14px;
-    }
-
-    .composer-tools {
-        gap: 5px;
-    }
-
-    .composer-tool {
-        font-size: 9px;
-        gap: 5px;
-        padding: 6px 4px;
-    }
-
-    .composer-bottom {
-        align-items: flex-end;
-    }
-
-    .post-submit {
-        padding: 9px 12px;
-    }
-
-    .post-header {
-        padding: 15px 14px 10px;
-    }
-
-    .post-content {
-        padding: 0 14px 14px;
-    }
-
-    .post-category {
-        margin-left: 14px;
-        margin-right: 14px;
-    }
-
-    .post-stats {
-        padding: 12px 14px;
-    }
-
-    .post-actions {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    .post-action {
-        font-size: 10px;
-        gap: 6px;
-        padding: 11px 2px;
-    }
-
-    .post-comments {
-        padding: 13px 14px;
-    }
-
-    .category-grid {
-        gap: 9px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .category-card {
-        padding: 14px 12px;
-    }
-
-    .learning-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .learning-hero {
-        padding: 24px 20px;
-    }
-
-    .learning-hero h2 {
-        font-size: 26px;
-    }
-
-    .learning-illustration {
-        font-size: 55px;
-    }
-
-    .jobs-banner {
-        padding: 23px 19px;
-    }
-
-    .jobs-banner h2 {
-        font-size: 20px;
-    }
-
-    .jobs-banner>i {
-        font-size: 45px;
-    }
-
-    .jobs-controls {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .jobs-controls input,
-    .jobs-controls select {
-        max-width: none;
-        width: 100%;
-    }
-
-    .profile-cover {
-        height: 130px;
-    }
-
-    .profile-information {
-        padding: 0 10px;
-    }
-
-    .profile-heading-row h1 {
-        font-size: 20px;
-    }
-
-    .profile-heading-row {
-        align-items: flex-start;
-    }
-
-    .profile-stats {
-        gap: 22px;
-    }
-
-    .profile-stats strong {
-        font-size: 17px;
-    }
-
-    .profile-stats span {
-        font-size: 9px;
-    }
-
-    .welcome-content {
-        padding: 38px 24px;
-    }
-
-    .welcome-content h1 {
-        font-size: 31px;
-    }
-
-    .welcome-description {
-        font-size: 12px;
-    }
-
-    .modal-card {
-        padding: 20px;
-    }
-
-    .feed-toolbar h2 {
-        font-size: 14px;
-    }
-}
-
-/* 22. REDUCED MOTION ACCESSIBILITY */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-
-/* COMMUNITY FEED PAGE */
-.community-feed-intro {
-    align-items: center;
-    background: linear-gradient(120deg, #eeeeff, #e7fbf8);
-    border: 1px solid #e2e5ff;
-    border-radius: 18px;
-    display: flex;
-    gap: 16px;
-    margin: 18px 0 24px;
-    padding: 22px;
-}
-
-.community-feed-icon {
-    align-items: center;
-    background: white;
-    border-radius: 15px;
-    box-shadow: var(--shadow-sm);
-    color: var(--primary);
-    display: flex;
-    flex: 0 0 52px;
-    font-size: 23px;
-    height: 52px;
-    justify-content: center;
-}
-
-.community-feed-intro h2 {
-    font-size: 15px;
-    margin-bottom: 5px;
-}
-
-.community-feed-intro p {
-    color: var(--text-secondary);
-    font-size: 12px;
-    line-height: 1.7;
-}
-
-.community-empty-state {
-    background: white;
-    border: 1px dashed #d9daeb;
-    border-radius: 16px;
-    color: var(--text-secondary);
-    padding: 42px 20px;
-    text-align: center;
-}
-
-.community-empty-state>i {
-    color: var(--primary);
-    font-size: 32px;
-    margin-bottom: 13px;
-}
-
-.community-empty-state h3 {
-    color: var(--text);
-    font-size: 15px;
-    margin-bottom: 7px;
-}
-
-.community-empty-state p {
-    font-size: 12px;
-    line-height: 1.8;
-    margin: 0 auto;
-    max-width: 430px;
-}
-
-@media (max-width: 600px) {
-    .community-feed-intro {
-        align-items: flex-start;
-        padding: 16px;
-    }
-
-    .community-feed-icon {
-        flex-basis: 42px;
-        height: 42px;
-        font-size: 18px;
+@media (min-width: 851px) {
+    .mobile-bottom-nav {
+        display: none !important;
     }
 }
     </style>
+    
     <!-- JavaScript -->
-
     <script>
         /* SKILL2EARN — FRONTEND APPLICATION */
 (() => {
@@ -3555,11 +1835,8 @@ video {
 
   const API_BASE = "http://127.0.0.1:5501/api";
 
-  const $ = (selector, root = document) =>
-    root.querySelector(selector);
-
-  const $$ = (selector, root = document) =>
-    [...root.querySelectorAll(selector)];
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
   const keys = {
     user: "s2e_user",
@@ -3573,10 +1850,6 @@ video {
   let savedPosts = readJSON(keys.saved, []);
   let apiAvailable = false;
 
-  /* =========================
-     LOCAL STORAGE
-  ========================= */
-
   function readJSON(key, fallback) {
     try {
       return JSON.parse(localStorage.getItem(key)) ?? fallback;
@@ -3589,17 +1862,9 @@ video {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  /* =========================
-     SECURITY AND UTILITIES
-  ========================= */
-
   function escapeHTML(value = "") {
     return String(value).replace(/[&<>"']/g, char => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
     })[char]);
   }
 
@@ -3608,13 +1873,7 @@ video {
   }
 
   function postAuthor(post) {
-    return (
-      post.author_name ||
-      post.author ||
-      post.username ||
-      post.user_name ||
-      "Community member"
-    );
+    return post.author_name || post.author || post.username || post.user_name || "Community member";
   }
 
   function postContent(post) {
@@ -3622,121 +1881,58 @@ video {
   }
 
   function postLikes(post) {
-    return Number(
-      post.likes_count ??
-      post.likes ??
-      post.like_count ??
-      0
-    );
+    return Number(post.likes_count ?? post.likes ?? post.like_count ?? 0);
   }
 
   function isMine(post) {
-    return (
-      postAuthor(post).toLowerCase() ===
-      String(currentUser?.name || "").toLowerCase()
-    );
+    return postAuthor(post).toLowerCase() === String(currentUser?.name || "").toLowerCase();
   }
 
   function showToast(message) {
     const container = $("#toastContainer");
-
-    if (!container) {
-      console.log(message);
-      return;
-    }
-
+    if (!container) return;
     const toast = document.createElement("div");
-
     toast.className = "toast-message";
     toast.textContent = message;
-
     container.appendChild(toast);
-
     setTimeout(() => toast.remove(), 3200);
   }
 
-  /* =========================
-     USER PROFILE
-  ========================= */
-
   function setUser(name) {
-    currentUser = {
-      name: name.trim() || "Skill2Earn Member"
-    };
-
+    currentUser = { name: name.trim() || "Skill2Earn Member" };
     saveJSON(keys.user, currentUser);
-
     const initial = currentUser.name.charAt(0).toUpperCase();
 
-    [
-      "#topAvatar",
-      "#sidebarAvatar",
-      "#composerAvatar",
-      "#profileAvatar"
-    ].forEach(selector => {
+    ["#topAvatar", "#sidebarAvatar", "#composerAvatar", "#profileAvatar", "#bannerAvatar", "#headerLogoAvatar"].forEach(selector => {
       const element = $(selector);
-
-      if (element) {
-        element.textContent = initial;
-      }
+      if (element) element.textContent = initial;
     });
 
-    [
-      "#sidebarName",
-      "#profileName"
-    ].forEach(selector => {
+    ["#sidebarName", "#profileName", "#bannerUserName"].forEach(selector => {
       const element = $(selector);
-
-      if (element) {
-        element.textContent = currentUser.name;
-      }
+      if (element) element.textContent = currentUser.name;
     });
 
     const nameInput = $("#editName");
+    if (nameInput) nameInput.value = currentUser.name;
 
-    if (nameInput) {
-      nameInput.value = currentUser.name;
-    }
+    $("#welcomeScreen")?.classList.add("hidden");
+    $("#appLayout")?.classList.remove("hidden");
 
-    const welcome = $("#welcomeScreen");
-    const layout = $("#appLayout");
-
-    if (welcome) {
-      welcome.classList.add("hidden");
-    }
-
-    if (layout) {
-      layout.classList.remove("hidden");
-    }
-
+    navigate("home");
     updateProfileStats();
   }
 
-  /* =========================
-     PAGE NAVIGATION
-  ========================= */
-
   function navigate(page) {
     $$(".page-section").forEach(section => {
-      section.classList.toggle(
-        "active",
-        section.id === `page-${page}`
-      );
+      section.classList.toggle("active", section.id === `page-${page}`);
     });
 
     $$(".nav-link[data-page]").forEach(button => {
-      button.classList.toggle(
-        "active",
-        button.dataset.page === page
-      );
+      button.classList.toggle("active", button.dataset.page === page);
     });
 
-    if (
-      page === "community" ||
-      page === "home" ||
-      page === "discover" ||
-      page === "profile"
-    ) {
+    if (["community", "home", "discover", "profile"].includes(page)) {
       loadPosts();
     }
 
@@ -3744,1129 +1940,160 @@ video {
       renderProfilePosts();
     }
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-    const menu = $(".top-actions");
-
-    if (menu) {
-      menu.classList.remove("mobile-menu-open");
-    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    $("#topActionsMenu")?.classList.remove("mobile-menu-open");
   }
-
-  /* =========================
-     BACKEND CONNECTION
-  ========================= */
 
   async function apiRequest(path, options = {}) {
     const response = await fetch(`${API_BASE}${path}`, {
       ...options,
-
-      headers: {
-        "Content-Type": "application/json",
-        ...(options.headers || {})
-      }
+      headers: { "Content-Type": "application/json", ...(options.headers || {}) }
     });
-
-    if (!response.ok) {
-      const message = await response.text().catch(() => "");
-
-      throw new Error(
-        message || `Request failed (${response.status})`
-      );
-    }
-
-    if (response.status === 204) {
-      return null;
-    }
-
+    if (!response.ok) throw new Error(await response.text().catch(() => ""));
+    if (response.status === 204) return null;
     return response.json();
   }
 
-  /* =========================
-     LOAD ALL COMMUNITY POSTS
-  ========================= */
-
   async function loadPosts() {
     const status = $("#communityPostsStatus");
-
     try {
-      const result = await apiRequest(
-        "/posts?skip=0&limit=100"
-      );
-
-      const serverPosts = Array.isArray(result)
-        ? result
-        : (
-            result.posts ||
-            result.items ||
-            result.data ||
-            []
-          );
-
+      const result = await apiRequest("/posts?skip=0&limit=100");
+      const serverPosts = Array.isArray(result) ? result : (result.posts || result.items || result.data || []);
       allPosts = [...serverPosts, ...localPosts];
-
       apiAvailable = true;
-
-      if (status) {
-        status.textContent =
-          `${allPosts.length} post` +
-          `${allPosts.length === 1 ? "" : "s"} in the community`;
-      }
-
-    } catch (error) {
+      if (status) status.textContent = `${allPosts.length} post(s) in community`;
+    } catch {
       apiAvailable = false;
-
       allPosts = [...localPosts];
-
-      if (status) {
-        status.textContent = localPosts.length
-          ? "Showing posts saved in this browser. Connect the backend to see posts from other users."
-          : "The community server is not connected yet.";
-      }
+      if (status) status.textContent = "Showing saved posts locally.";
     }
-
     renderAllFeeds();
   }
 
-  /* =========================
-     RENDER ALL FEEDS
-  ========================= */
-
   function renderAllFeeds() {
     renderFeed($("#feedList"), allPosts, "home");
-
-    renderFeed(
-      $("#discoverFeed"),
-      allPosts,
-      "discover"
-    );
-
-    renderFeed(
-      $("#communityFeed"),
-      allPosts,
-      "community"
-    );
-
+    renderFeed($("#discoverFeed"), allPosts, "discover");
+    renderFeed($("#communityFeed"), allPosts, "community");
     renderProfilePosts();
-
     updateProfileStats();
   }
 
-  /* =========================
-     DISPLAY POSTS
-  ========================= */
-
   function renderFeed(container, posts, context) {
     if (!container) return;
-
     let filtered = [...posts];
 
-    if (context === "discover") {
-      const query = (
-        $("#discoverSearch")?.value ||
-        $("#globalSearch")?.value ||
-        ""
-      ).trim().toLowerCase();
-
-      if (query) {
-        filtered = filtered.filter(post =>
-          `${postContent(post)} ${postAuthor(post)} ${post.category || ""}`
-            .toLowerCase()
-            .includes(query)
-        );
-      }
-    }
-
-    if (context === "home") {
-      const query = (
-        $("#globalSearch")?.value || ""
-      ).trim().toLowerCase();
-
-      if (query) {
-        filtered = filtered.filter(post =>
-          `${postContent(post)} ${postAuthor(post)} ${post.category || ""}`
-            .toLowerCase()
-            .includes(query)
-        );
-      }
-    }
-
-    const sort =
-      context === "community"
-        ? ($("#communityFeedSort")?.value || "latest")
-        : ($("#feedSort")?.value || "latest");
-
+    const sort = context === "community" ? ($("#communityFeedSort")?.value || "latest") : ($("#feedSort")?.value || "latest");
     if (sort === "popular") {
-      filtered.sort(
-        (a, b) => postLikes(b) - postLikes(a)
-      );
+      filtered.sort((a, b) => postLikes(b) - postLikes(a));
     } else {
-      filtered.sort(
-        (a, b) => dateValue(b) - dateValue(a)
-      );
+      filtered.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
     }
 
     if (!filtered.length) {
-      const isCommunity = context === "community";
-
-      container.innerHTML = `
-        <div class="community-empty-state">
-          <i class="fa-solid ${
-            isCommunity
-              ? "fa-users"
-              : "fa-feather-pointed"
-          }"></i>
-
-          <h3>${
-            isCommunity
-              ? "No community posts to show yet"
-              : "Nothing here yet"
-          }</h3>
-
-          <p>${
-            isCommunity
-              ? (
-                  apiAvailable
-                    ? "Be the first to share something useful with the community."
-                    : "Start the backend server and publish posts to see posts from other users here."
-                )
-              : "Try another search, or create a post to get the conversation started."
-          }</p>
-        </div>
-      `;
-
+      container.innerHTML = `<div class="empty-state"><h3>Nothing here yet</h3><p>Be the first to share an update or photo!</p></div>`;
       return;
     }
 
-    container.innerHTML = filtered
-      .map(post => postCard(post))
-      .join("");
+    container.innerHTML = filtered.map(post => postCard(post)).join("");
   }
-
-  /* =========================
-     POST DATES
-  ========================= */
-
-  function dateValue(post) {
-    const value =
-      post.created_at ||
-      post.createdAt ||
-      post.timestamp ||
-      post.date;
-
-    const parsed = value
-      ? new Date(value).getTime()
-      : 0;
-
-    return Number.isFinite(parsed) ? parsed : 0;
-  }
-
-  function formatDate(post) {
-    const value =
-      post.created_at ||
-      post.createdAt ||
-      post.timestamp ||
-      post.date;
-
-    if (!value) {
-      return "Just now";
-    }
-
-    const date = new Date(value);
-
-    if (Number.isNaN(date.getTime())) {
-      return "Recently";
-    }
-
-    return date.toLocaleString([], {
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit"
-    });
-  }
-
-  /* =========================
-     POST MEDIA
-  ========================= */
-
-  function postMedia(post) {
-    const url =
-      post.media_url ||
-      post.file_url ||
-      post.image_url ||
-      post.media ||
-      post.file ||
-      "";
-
-    if (typeof url !== "string" || !url) {
-      return "";
-    }
-
-    const fullURL = url.startsWith("http")
-      ? url
-      : `http://127.0.0.1:5501${
-          url.startsWith("/") ? "" : "/"
-        }${url}`;
-
-    const safeURL = escapeHTML(fullURL);
-
-    const type = (
-      post.media_type ||
-      post.file_type ||
-      ""
-    ).toLowerCase();
-
-    if (
-      type.includes("video") ||
-      /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url)
-    ) {
-      return `
-        <div class="post-media">
-          <video
-            src="${safeURL}"
-            controls
-            preload="metadata">
-          </video>
-        </div>
-      `;
-    }
-
-    return `
-      <div class="post-media">
-        <img
-          src="${safeURL}"
-          alt="Post attachment"
-          loading="lazy"
-          onerror="this.parentElement.remove()">
-      </div>
-    `;
-  }
-
-  /* =========================
-     POST CARD
-  ========================= */
 
   function postCard(post) {
     const id = postId(post);
     const author = postAuthor(post);
     const content = postContent(post);
+    const category = post.category || "Community";
+    const saved = savedPosts.map(String).includes(id);
 
-    const category =
-      post.category ||
-      post.tag ||
-      "Community";
-
-    const likedByMe =
-      Array.isArray(post.liked_by) &&
-      post.liked_by.includes(currentUser?.name);
-
-    const saved = savedPosts
-      .map(String)
-      .includes(id);
-
-    const ownerMenu =
-      isMine(post) && id
-        ? `
-          <button
-            class="post-menu-button"
-            data-delete-post="${escapeHTML(id)}"
-            title="Delete your post">
-
-            <i class="fa-regular fa-trash-can"></i>
-          </button>
-        `
-        : "";
-
-    const commentsCount = Number(
-      post.comments_count ??
-      (
-        Array.isArray(post.comments)
-          ? post.comments.length
-          : 0
-      )
-    );
+    const mediaUrl = post.media_url || post.file_url || post.image_url || "";
+    let mediaHTML = "";
+    if (mediaUrl) {
+      const safeURL = escapeHTML(mediaUrl.startsWith("http") ? mediaUrl : `http://127.0.0.1:5501/${mediaUrl}`);
+      mediaHTML = `<div class="post-media"><img src="${safeURL}" alt="Post image" loading="lazy"></div>`;
+    }
 
     return `
-      <article
-        class="post-card"
-        data-post-id="${escapeHTML(id)}">
-
+      <article class="post-card" data-post-id="${escapeHTML(id)}">
         <div class="post-header">
-
-          <div class="post-avatar">
-            ${escapeHTML(author.charAt(0).toUpperCase())}
-          </div>
-
+          <div class="post-avatar">${escapeHTML(author.charAt(0).toUpperCase())}</div>
           <div class="post-user-info">
             <h3>${escapeHTML(author)}</h3>
-            <p>${escapeHTML(formatDate(post))}</p>
+            <p>Just now</p>
           </div>
-
-          ${ownerMenu}
-
         </div>
-
-        <span class="post-category">
-          ${escapeHTML(category)}
-        </span>
-
-        <div class="post-content">
-          ${escapeHTML(content)}
-        </div>
-
-        ${postMedia(post)}
-
+        <span class="post-category">${escapeHTML(category)}</span>
+        <div class="post-content">${escapeHTML(content)}</div>
+        ${mediaHTML}
         <div class="post-stats">
-
-          <span class="post-stats-left">
-            <span class="like-dot">
-              <i class="fa-solid fa-heart"></i>
-            </span>
-
-            ${postLikes(post)} likes
-          </span>
-
-          <span>
-            ${commentsCount} comments
-          </span>
-
+          <span><i class="fa-solid fa-heart" style="color:var(--primary);"></i> ${postLikes(post)} likes</span>
         </div>
-
         <div class="post-actions">
-
-          <button
-            class="post-action ${likedByMe ? "liked" : ""}"
-            data-like-post="${escapeHTML(id)}">
-
-            <i class="fa-regular fa-heart"></i>
-            Like
+          <button class="post-action" data-like-post="${escapeHTML(id)}"><i class="fa-regular fa-heart"></i> Like</button>
+          <button class="post-action" data-comment-post="${escapeHTML(id)}"><i class="fa-regular fa-comment"></i> Comment</button>
+          <button class="post-action ${saved ? "saved" : ""}" data-save-post="${escapeHTML(id)}">
+            <i class="fa-${saved ? "solid" : "regular"} fa-bookmark"></i> ${saved ? "Saved" : "Save"}
           </button>
-
-          <button
-            class="post-action"
-            data-comment-post="${escapeHTML(id)}">
-
-            <i class="fa-regular fa-comment"></i>
-            Comment
-          </button>
-
-          <button
-            class="post-action"
-            data-save-post="${escapeHTML(id)}">
-
-            <i class="fa-${
-              saved ? "solid" : "regular"
-            } fa-bookmark"></i>
-
-            ${saved ? "Saved" : "Save"}
-          </button>
-
         </div>
-
       </article>
     `;
   }
 
-  /* =========================
-     CREATE A POST
-  ========================= */
-
   async function publishPost(event) {
     event.preventDefault();
-
     const textarea = $("#postText");
-    const message = $("#postMessage");
-
     const content = textarea?.value.trim();
+    if (!content) return;
 
-    if (!content) {
-      if (message) {
-        message.textContent =
-          "Write something before publishing.";
-      }
-
-      return;
-    }
-
-    const submit = $(
-      "#postForm button[type='submit']"
-    );
-
-    if (submit) {
-      submit.disabled = true;
-    }
-
-    const category =
-      $("#postText").dataset.category ||
-      "Community";
-
-    const payload = {
+    const localPost = {
+      id: `local-${Date.now()}`,
       content,
-      author_name:
-        currentUser?.name ||
-        "Community member",
-      category
+      author_name: currentUser?.name || "Community member",
+      category: textarea.dataset.category || "Community",
+      created_at: new Date().toISOString(),
+      likes_count: 0
     };
 
-    try {
-      const created = await apiRequest(
-        "/posts",
-        {
-          method: "POST",
-          body: JSON.stringify(payload)
-        }
-      );
-
-      if (created && typeof created === "object") {
-        localPosts = localPosts.filter(
-          post => postContent(post) !== content
-        );
-      }
-
-      showToast("Your post has been published!");
-
-      if (message) {
-        message.textContent = "Published successfully.";
-      }
-
-    } catch (error) {
-      const localPost = {
-        id: `local-${Date.now()}`,
-        ...payload,
-        created_at: new Date().toISOString(),
-        likes_count: 0
-      };
-
-      localPosts.unshift(localPost);
-
-      saveJSON(keys.posts, localPosts);
-
-      showToast(
-        "Saved on this browser. Connect the backend to share it with everyone."
-      );
-
-      if (message) {
-        message.textContent =
-          "Saved locally on this device; it is not visible to other users yet.";
-      }
-
-    } finally {
-      if (submit) {
-        submit.disabled = false;
-      }
-
-      if (textarea) {
-        textarea.value = "";
-        delete textarea.dataset.category;
-      }
-
-      await loadPosts();
-    }
+    localPosts.unshift(localPost);
+    saveJSON(keys.posts, localPosts);
+    showToast("Post published to your feed!");
+    textarea.value = "";
+    await loadPosts();
   }
 
-  /* =========================
-     LIKE A POST
-  ========================= */
-
-  async function handleLike(id) {
-    if (!id || id.startsWith("local-")) {
-      showToast(
-        "This post needs a backend ID before it can be liked."
-      );
-
-      return;
+  document.addEventListener("click", event => {
+    const nav = event.target.closest("[data-page]");
+    if (nav) {
+      navigate(nav.dataset.page);
     }
+  });
 
-    try {
-      await apiRequest(
-        `/posts/${encodeURIComponent(id)}/like`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            author_name: currentUser?.name
-          })
-        }
-      );
+  $("#signInForm")?.addEventListener("submit", event => {
+    event.preventDefault();
+    const name = $("#displayName")?.value.trim();
+    if (name) setUser(name);
+  });
 
-      await loadPosts();
+  $("#postForm")?.addEventListener("submit", publishPost);
 
-    } catch (error) {
-      showToast(
-        "Could not like this post. Check that the backend is running."
-      );
-    }
-  }
-
-  /* =========================
-     COMMENT ON A POST
-  ========================= */
-
-  async function handleComment(id) {
-    if (!id || id.startsWith("local-")) {
-      showToast(
-        "Comments require a post saved on the backend."
-      );
-
-      return;
-    }
-
-    const content = window.prompt(
-      "Write your comment:"
-    );
-
-    if (!content?.trim()) {
-      return;
-    }
-
-    try {
-      await apiRequest(
-        `/posts/${encodeURIComponent(id)}/comments`,
-        {
-          method: "POST",
-
-          body: JSON.stringify({
-            content: content.trim(),
-            author_name:
-              currentUser?.name ||
-              "Community member"
-          })
-        }
-      );
-
-      showToast("Comment added.");
-
-      await loadPosts();
-
-    } catch (error) {
-      showToast(
-        "Comments need a working backend connection."
-      );
-    }
-  }
-
-  /* =========================
-     DELETE A POST
-  ========================= */
-
-  async function handleDelete(id) {
-    if (!window.confirm("Delete this post?")) {
-      return;
-    }
-
-    if (id.startsWith("local-")) {
-      localPosts = localPosts.filter(
-        post => postId(post) !== id
-      );
-
-      saveJSON(keys.posts, localPosts);
-
-      showToast("Post deleted.");
-
-      await loadPosts();
-
-      return;
-    }
-
-    try {
-      await apiRequest(
-        `/posts/${encodeURIComponent(id)}`,
-        {
-          method: "DELETE"
-        }
-      );
-
-      localPosts = localPosts.filter(
-        post => postId(post) !== id
-      );
-
-      saveJSON(keys.posts, localPosts);
-
-      showToast("Post deleted.");
-
-      await loadPosts();
-
-    } catch (error) {
-      showToast(
-        "Could not delete this post. Check the backend."
-      );
-    }
-  }
-
-  /* =========================
-     PROFILE POSTS AND STATS
-  ========================= */
+  $("#menuToggle")?.addEventListener("click", () => {
+    $("#topActionsMenu")?.classList.toggle("mobile-menu-open");
+  });
 
   function renderProfilePosts() {
     const container = $("#profileFeed");
-
-    if (!container) {
-      return;
-    }
-
-    const mine = allPosts.filter(isMine);
-
-    renderFeed(container, mine, "profile");
+    if (!container) return;
+    renderFeed(container, allPosts.filter(isMine), "profile");
   }
 
   function updateProfileStats() {
     const mine = allPosts.filter(isMine);
-
-    const postCount = $("#profilePostCount");
-    const likeCount = $("#profileLikeCount");
-    const savedCount = $("#profileSavedCount");
-
-    if (postCount) {
-      postCount.textContent = mine.length;
-    }
-
-    if (likeCount) {
-      likeCount.textContent = mine.reduce(
-        (sum, post) => sum + postLikes(post),
-        0
-      );
-    }
-
-    if (savedCount) {
-      savedCount.textContent = savedPosts.length;
-    }
+    if ($("#profilePostCount")) $("#profilePostCount").textContent = mine.length;
   }
 
-  /* =========================
-     GLOBAL CLICK HANDLERS
-  ========================= */
-
-  document.addEventListener(
-    "click",
-    async event => {
-
-      const nav = event.target.closest("[data-page]");
-
-      if (nav) {
-        navigate(nav.dataset.page);
-        return;
-      }
-
-      const like = event.target.closest(
-        "[data-like-post]"
-      );
-
-      if (like) {
-        await handleLike(like.dataset.likePost);
-        return;
-      }
-
-      const comment = event.target.closest(
-        "[data-comment-post]"
-      );
-
-      if (comment) {
-        await handleComment(
-          comment.dataset.commentPost
-        );
-
-        return;
-      }
-
-      const save = event.target.closest(
-        "[data-save-post]"
-      );
-
-      if (save) {
-        const id = save.dataset.savePost;
-
-        savedPosts = savedPosts
-          .map(String)
-          .includes(id)
-          ? savedPosts.filter(
-              item => String(item) !== id
-            )
-          : [...savedPosts, id];
-
-        saveJSON(keys.saved, savedPosts);
-
-        renderAllFeeds();
-
-        showToast(
-          savedPosts.map(String).includes(id)
-            ? "Post saved."
-            : "Post removed from saved posts."
-        );
-
-        return;
-      }
-
-      const del = event.target.closest(
-        "[data-delete-post]"
-      );
-
-      if (del) {
-        await handleDelete(
-          del.dataset.deletePost
-        );
-      }
-    }
-  );
-
-  /* =========================
-     SIGN IN
-  ========================= */
-
-  $("#signInForm")?.addEventListener(
-    "submit",
-    event => {
-      event.preventDefault();
-
-      const name = $("#displayName")?.value.trim();
-
-      if (name) {
-        setUser(name);
-      }
-
-      navigate("home");
-
-      loadPosts();
-    }
-  );
-
-  /* =========================
-     POST FORM
-  ========================= */
-
-  $("#postForm")?.addEventListener(
-    "submit",
-    publishPost
-  );
-
-  /* =========================
-     COMMUNITY FEED CONTROLS
-  ========================= */
-
-  $("#refreshCommunityPosts")?.addEventListener(
-    "click",
-    loadPosts
-  );
-
-  $("#feedSort")?.addEventListener(
-    "change",
-    renderAllFeeds
-  );
-
-  $("#communityFeedSort")?.addEventListener(
-    "change",
-    renderAllFeeds
-  );
-
-  $("#globalSearch")?.addEventListener(
-    "input",
-    renderAllFeeds
-  );
-
-  $("#discoverSearch")?.addEventListener(
-    "input",
-    renderAllFeeds
-  );
-
-  /* =========================
-     COMPOSER BUTTONS
-  ========================= */
-
-  $("#scrollToComposer")?.addEventListener(
-    "click",
-    () => {
-      $("#postComposer")?.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-
-      $("#postText")?.focus();
-    }
-  );
-
-  $("#openComposer")?.addEventListener(
-    "click",
-    () => $("#postText")?.focus()
-  );
-
-  $("#storyCreatePost")?.addEventListener(
-    "click",
-    () => $("#postText")?.focus()
-  );
-
-  $("#mobileCreatePost")?.addEventListener(
-    "click",
-    () => {
-      navigate("home");
-
-      setTimeout(() => {
-        $("#postComposer")?.scrollIntoView({
-          behavior: "smooth"
-        });
-
-        $("#postText")?.focus();
-      }, 50);
-    }
-  );
-
-  /* =========================
-     POST CATEGORIES
-  ========================= */
-
-  $("#addProjectTag")?.addEventListener(
-    "click",
-    () => {
-      const field = $("#postText");
-
-      if (field) {
-        field.dataset.category = "Projects";
-
-        field.value += field.value
-          ? "\n\n#Project "
-          : "#Project ";
-
-        field.focus();
-      }
-    }
-  );
-
-  $("#addLearningTag")?.addEventListener(
-    "click",
-    () => {
-      const field = $("#postText");
-
-      if (field) {
-        field.dataset.category = "Learning";
-
-        field.value += field.value
-          ? "\n\n#Learning "
-          : "#Learning ";
-
-        field.focus();
-      }
-    }
-  );
-
-  $$(".category-card").forEach(button => {
-    button.addEventListener("click", () => {
-      const category = button.dataset.category;
-
-      const search = $("#discoverSearch");
-
-      if (search) {
-        search.value = category;
-      }
-
-      navigate("discover");
-
-      renderAllFeeds();
-    });
-  });
-
-  /* =========================
-     MODALS
-  ========================= */
-
-  $$("[data-close-modal]").forEach(button => {
-    button.addEventListener("click", () => {
-      const modal = $(
-        `#${button.dataset.closeModal}`
-      );
-
-      modal?.classList.add("hidden");
-    });
-  });
-
-  $("#editProfileButton")?.addEventListener(
-    "click",
-    () => {
-      const nameInput = $("#editName");
-      const bioInput = $("#editBio");
-
-      if (nameInput) {
-        nameInput.value = currentUser?.name || "";
-      }
-
-      if (bioInput) {
-        bioInput.value =
-          $("#profileBio")?.textContent || "";
-      }
-
-      $("#profileModal")?.classList.remove("hidden");
-    }
-  );
-
-  /* =========================
-     EDIT PROFILE
-  ========================= */
-
-  $("#profileForm")?.addEventListener(
-    "submit",
-    event => {
-      event.preventDefault();
-
-      const name = $("#editName")?.value.trim();
-
-      if (!name) {
-        return;
-      }
-
-      setUser(name);
-
-      const bio =
-        $("#editBio")?.value.trim() ||
-        "Building, learning and sharing one step at a time.";
-
-      const profileBio = $("#profileBio");
-
-      if (profileBio) {
-        profileBio.textContent = bio;
-      }
-
-      $("#profileModal")?.classList.add("hidden");
-
-      showToast("Profile updated on this device.");
-
-      renderAllFeeds();
-    }
-  );
-
-  /* =========================
-     NOTIFICATIONS
-  ========================= */
-
-  $("#notificationButton")?.addEventListener(
-    "click",
-    () => {
-      $("#notificationModal")?.classList.remove("hidden");
-    }
-  );
-
-  /* =========================
-     SAVED POSTS
-  ========================= */
-
-  $("#savedPostsButton")?.addEventListener(
-    "click",
-    () => {
-      const ids = savedPosts.map(String);
-
-      const saved = allPosts.filter(post =>
-        ids.includes(postId(post))
-      );
-
-      navigate("community");
-
-      const feed = $("#communityFeed");
-
-      if (feed) {
-        renderFeed(feed, saved, "community");
-      }
-
-      const status = $("#communityPostsStatus");
-
-      if (status) {
-        status.textContent =
-          `${saved.length} saved post` +
-          `${saved.length === 1 ? "" : "s"}`;
-      }
-    }
-  );
-
-  $("#myPostsButton")?.addEventListener(
-    "click",
-    () => navigate("profile")
-  );
-
-  /* =========================
-     LEARNING SECTION
-  ========================= */
-
-  $("#learningStartButton")?.addEventListener(
-    "click",
-    () => {
-      $("#learningResources")?.scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-  );
-
-  /* =========================
-     JOB SEARCH
-  ========================= */
-
-  $("#jobSearch")?.addEventListener(
-    "input",
-    () => {
-      const query = $("#jobSearch").value.trim();
-
-      const status = $("#jobsStatus");
-
-      if (status) {
-        status.textContent = query
-          ? `Job search: "${query}". Connect a jobs API to show live listings.`
-          : "Connect to the backend to load current public listings.";
-      }
-    }
-  );
-
-  $("#searchJobsButton")?.addEventListener(
-    "click",
-    () => {
-      showToast(
-        "Live job listings require a jobs API connection."
-      );
-    }
-  );
-
-  /* =========================
-     MOBILE MENU
-  ========================= */
-
-  $("#menuToggle")?.addEventListener(
-    "click",
-    () => {
-      $(".top-actions")?.classList.toggle(
-        "mobile-menu-open"
-      );
-    }
-  );
-
-  /* =========================
-     FOOTER LINKS
-  ========================= */
-
-  ["aboutLink", "privacyLink", "helpLink"].forEach(
-    id => {
-      $(`#${id}`)?.addEventListener(
-        "click",
-        event => {
-          event.preventDefault();
-
-          showToast(
-            "This information page has not been configured yet."
-          );
-        }
-      );
-    }
-  );
-
-  /* =========================
-     INITIALIZE APPLICATION
-  ========================= */
-
   const existingUser = readJSON(keys.user, null);
-
   if (existingUser?.name) {
     setUser(existingUser.name);
   }
-
-  loadPosts();
-
 })();
     </script>
-
 </body>
 </html>
